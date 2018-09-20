@@ -8,8 +8,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<body>    
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -21,9 +21,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
-                    <li>@Html.ActionLink("О программе", "About", "Home")</li>
-                    <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
+                    <li><a href="~/Home/Index"><span class="glyphicon glyphicon-home"></span></a></li>
+                    <li>@Html.ActionLink("Помощь", "Help", "Home")</li>
+                    
+                
+                    <li><a href="mailto:Marketing@example.com"><span class="glyphicon glyphicon-envelope "></span> Email</a></li>
                 </ul>
             </div>
         </div>

@@ -12,17 +12,11 @@ namespace Lifestyle.Controllers
         {
             return View();
         }
+               
 
-        public ActionResult About()
+        public ActionResult Help()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Hello! THis small help";
 
             return View();
         }

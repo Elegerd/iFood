@@ -12,33 +12,37 @@
     body {
         margin: 0;
         color:black;
+        background-color: #FFFDD0; 
     }
 
     .navbar {
         width: 100%;
-        background-color: #CD853F;
-        overflow: auto;
-        
-        
+        background-color: #30D5C8;
+        overflow: auto;                
     }
     
     
     .navbar-default .glyphicon    
        {
-            float: left;
-            width: 20%;
+            float: inherit;
+           /*
+               width: 20%;
+           */ 
             text-align: center;
             padding: 2px 0;
             transition: all 0.3s ease;
             color: white;
             font-size: 20px;
         }
-   
+     /*       
+    a{
+        background-color:darkgreen;
+    }
 
             .navbar-brand {
                 background-color: #800000;
             }       
-   
+   */
     
 </style>
 
@@ -56,17 +60,18 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="~/Home/Index"><span class="glyphicon glyphicon-home"></span></a></li>
+                    <li><a href="~/Home/Index"><span class="glyphicon glyphicon-home"></span>  Home</a></li>
                    <!--
                        <li>Html.ActionLink("Помощь", "Help", "Home")</li> 
                    -->                   
-                    <li><a href="~/Home/Help"><span class="glyphicon glyphicon-search"></span></a></li>
-                    <li><a href="mailto:Marketing@example.com"><span class="glyphicon glyphicon-envelope "></span></a></li>
+                    <li><a href="~/Home/Help"><span class="glyphicon glyphicon-search"></span>  Help</a></li>
+                    <li><a href="mailto:Marketing@example.com"><span class="glyphicon glyphicon-envelope "></span>  Email</a></li>
                 </ul>
                 <ul class="nav  navbar-nav navbar-right">
-                    
-                    <li><a href="~/Account/Login">Вход</a></li>
-                    
+                   
+                        <li><a href="~/Account/Login"><span class="glyphicon glyphicon-user "></span>   Вход</a></li>
+                 
+
                 </ul>
             </div>
         </div>

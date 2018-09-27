@@ -3,6 +3,16 @@
     ViewBag.Title = "Home Page";
 }
 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    div {
+        border-radius: 5px;
+    }
+</style>
+
 
 <div class="row">
     <div class="col-sm-9" style="border-color:darkgreen">
@@ -16,6 +26,7 @@
         <span class="border border-primary"></span>
 
         <div class="container-fluid" style="background-color:cornflowerblue">
+
 
             @using (Html.BeginForm())
             {

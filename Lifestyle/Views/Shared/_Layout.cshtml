@@ -1,53 +1,39 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
+
 <style>
     body {
-        margin: 0;
-        color: black;
-        padding-top: 80px;
-        background-color: #FFFDD0;
+        background: url(img/background.jpg) no-repeat;
+        background-size: 100%;
     }
 
     .navbar {
         width: 100%;
         background-color: #30D5C8;
-        overflow: auto;                
-    }
-    
-    
-    .navbar-default .glyphicon    
-       {
-            float: inherit;
-           /*
-               width: 20%;
-           */ 
-            text-align: center;
-            padding: 2px 0;
-            transition: all 0.3s ease;
-            color: white;
-            font-size: 20px;
-        }
-     /*       
-    a{
-        background-color:darkgreen;
+        overflow: auto;
     }
 
-            .navbar-brand {
-                background-color: #800000;
-            }       
-   */
-    
+
+    .navbar-default .glyphicon {
+        float: inherit;
+        text-align: center;
+        padding: 2px 0;
+        transition: all 0.3s ease;
+        color: white;
+        font-size: 20px;
+    }
 </style>
 
 
-<body>    
+
+<body>
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -66,14 +52,15 @@
                     <li><a href="~/Account/Logoff"><span class="glyphicon glyphicon-remove"></span>  Logout</a></li>
                 </ul>
                 <ul class="nav  navbar-nav navbar-right">
-                   
-                        <li><a href="~/Account/Login"><span class="glyphicon glyphicon-user "></span>   Login</a></li>
-                 
+
+                    <li><a href="~/Account/Login"><span class="glyphicon glyphicon-user "></span>   Login</a></li>
+
 
                 </ul>
             </div>
         </div>
     </div>
+
     <div class="container body-content">
         @RenderBody()
         <hr />

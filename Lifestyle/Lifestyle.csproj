@@ -242,7 +242,9 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Account\ProfileUser.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Img\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />

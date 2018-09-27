@@ -35,20 +35,19 @@
                 <div class="checkbox">
                     <label><input type="checkbox">Запомнить меня</label>
                 </div>
-
-                <div class="row">
-                    <div class="col-sm-6">
+                <form class="form-inline">
+                    <div class="form-group">
                         @Html.ActionLink("Регистрация", "Register", "Account")
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default" >Войти</button>
+                    </div>
 
-                    </div>
-                    <div class="col-sm-6 ">
-                        <button type="submit" class="btn btn-default">Войти</button>
-                    </div>
-                </div>
-               
+                </form>
+             
             </form>
             }
-        </div>
+</div>
     </div>
 
 </div>

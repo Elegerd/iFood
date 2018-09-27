@@ -88,5 +88,8 @@ namespace Lifestyle.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
+
+
+        
     }
 }

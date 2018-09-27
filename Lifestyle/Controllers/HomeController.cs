@@ -32,7 +32,7 @@ namespace Lifestyle.Controllers
                 if (user != null)
                 {
                     FormsAuthentication.SetAuthCookie(model.Login, true);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ProfileUser", "Account");
                 }
                 else
                 {

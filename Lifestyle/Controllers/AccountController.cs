@@ -63,7 +63,7 @@ namespace Lifestyle.Controllers
                     // создаем нового пользователя
                     using (UserContext db = new UserContext())
                     {
-                        db.Users.Add(new User { Email = model.Login, Password = model.Password, BirthDate = model.BirthDate, Name=model.Name, });
+                        db.Users.Add(new User { Email = model.Login, Password = model.Password, BirthDate = model.BirthDate, Name=model.Name, Sex=model.Sex});
                         db.SaveChanges();
 
                         user = db.Users.Where(u => u.Email == model.Login && u.Password == model.Password).FirstOrDefault();
@@ -92,7 +92,8 @@ namespace Lifestyle.Controllers
 
         [Authorize]
         public ActionResult ProfileUser()
-        {          
+        {         
+             
            /* ViewBag.Message = User.Identity.Name;
           
                 tableData = db.Zakazs.Find(id);

@@ -43,7 +43,7 @@ namespace Lifestyle.Controllers
             return View(model);
         }
 
-
+        [Authorize]
         public ActionResult Help()
         {
             ViewBag.Message = "Hello! THis small help";

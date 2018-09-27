@@ -90,6 +90,11 @@ namespace Lifestyle.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult ProfileUser()
+        {
+            return View();
+        }
     }
 }
 

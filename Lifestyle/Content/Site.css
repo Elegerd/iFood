@@ -49,3 +49,40 @@ textarea {
     color: white;
     font-size: 20px;
 }
+
+body {
+    color: white;
+}
+
+h1 {
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+button.mybutton {
+    color: #fff;
+    background: #FFA500;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid #FF8247;
+}
+
+button.mybutton:hover {
+        background: #FF6347;
+}
+
+a.button {
+    color: #fff;
+    background: #FFA500;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid #FF8247;
+    text-decoration: none;
+}
+
+a.button:hover {
+        background: #FF6347;
+}

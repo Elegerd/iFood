@@ -11,14 +11,11 @@
     .container-fluid {
         padding-top: 13px;
     }
-    
 </style>
 
 
 <div class="row">
     <div class="col-sm-9" style="border-color:darkgreen">
-
-        Скоро здесь будет картинка)))
 
     </div>
 
@@ -29,8 +26,8 @@
         <div class="container-fluid" style="background-color:cornflowerblue"  >
 
 
-            @using (Html.BeginForm())
-            {
+         @using (Html.BeginForm())
+         {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <form>
@@ -48,18 +45,12 @@
                     <label><input type="checkbox">Запомнить меня</label>
                 </div>
                 <form class="form-inline">
-                    <div class="form-group">
-                        @Html.ActionLink("Регистрация", "Register", "Account")
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-default" >Войти</button>
-                    </div>
-
+                        <button type="submit" class="mybutton"> Войти </button>
+                        <a href="~/Account/Register" class="button"> Регистрация </a>
                 </form>
              
             </form>
-            }
-</div>
+        }
+        </div>
     </div>
-
 </div>

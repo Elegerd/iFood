@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Authorization</h4>
+        <h4>Авторизация</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -39,8 +39,7 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div>    
     @Html.ActionLink("Регистрация", "Register", "Account")
 </div>
 

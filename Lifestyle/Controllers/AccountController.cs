@@ -31,7 +31,7 @@ namespace Lifestyle.Controllers
                 if (user != null)
                 {
                     FormsAuthentication.SetAuthCookie(model.Login, true);
-                    return RedirectToAction("ProfileUser", "Account");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -63,7 +63,7 @@ namespace Lifestyle.Controllers
                     // создаем нового пользователя
                     using (UserContext db = new UserContext())
                     {
-                        db.Users.Add(new User { Email = model.Login, Password = model.Password, BirthDate = model.BirthDate, Name=model.Name, });
+                        db.Users.Add(new User { Email = model.Login, Password = model.Password, BirthDate = model.BirthDate });
                         db.SaveChanges();
 
                         user = db.Users.Where(u => u.Email == model.Login && u.Password == model.Password).FirstOrDefault();
@@ -83,14 +83,17 @@ namespace Lifestyle.Controllers
 
             return View(model);
         }
+
+        [Authorize]
         public ActionResult Logoff()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
+    }
+}
 
-
-        [Authorize]
+/*
         public ActionResult ProfileUser()
         {          
            /* ViewBag.Message = User.Identity.Name;
@@ -104,9 +107,7 @@ namespace Lifestyle.Controllers
                     }
                 }
             }
-            ViewBag.Message2 = PrivateTable;*/
+            ViewBag.Message2 = PrivateTable;
             return View();
         }
-
-    }
-}
+*/

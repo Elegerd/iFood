@@ -1,9 +1,15 @@
 ﻿body {
     background: url('../img/background.jpg') no-repeat;
-    background-size: 100%;
+    /*
+     background-size: 100%;
+   */
+    background-position:center center;
+    background-size:cover;
     padding-top: 80px;
     padding-bottom: 20px;
 }
+
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -65,7 +71,7 @@ a {
 button.mybutton {
     color: #fff;
     background: #FFA500;
-    padding: 5px;
+    padding: 3px;
     border-radius: 5px;
     border: 2px solid #FF8247;
 }
@@ -81,6 +87,8 @@ a.button {
     border-radius: 5px;
     border: 2px solid #FF8247;
     text-decoration: none;
+    padding-inline-end:11px;
+    padding-inline-start:12px;
 }
 
 a.button:hover {

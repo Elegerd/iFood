@@ -10,9 +10,11 @@ namespace Lifestyle.Models
     public class User
     {
         public int UserId { get; set; }
+
         public string Email { get; set; }
 
         [DisplayName("Пароль")]
+
         public string Password { get; set; }
 
         [DisplayName("Имя")]
@@ -30,6 +32,6 @@ namespace Lifestyle.Models
         public int Weight { get; set; }
 
         [DisplayName("Пол")]
-        public int Sex { get; set; }
+        public bool? Sex { get; set; }
     }
 }

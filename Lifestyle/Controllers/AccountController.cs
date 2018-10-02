@@ -66,7 +66,7 @@ namespace Lifestyle.Controllers
                         db.Users.Add(new User { Email = model.Login, Password = model.Password, BirthDate = model.BirthDate });
                         db.SaveChanges();
 
-                        user = db.Users.Where(u => u.Email == model.Login && u.Password == model.Password).FirstOrDefault();
+                        user = db.Users.Where(u => u.Email == model.Login && u.Password == model.Password && u.BirthDate == model.BirthDate).FirstOrDefault();
                     }
                     // если пользователь удачно добавлен в бд
                     if (user != null)

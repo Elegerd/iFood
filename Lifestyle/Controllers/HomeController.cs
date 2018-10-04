@@ -22,12 +22,5 @@ namespace Lifestyle.Controllers
             }
             return View();
         }
-
-        [Authorize]
-        public ActionResult Help()
-        {
-            ViewBag.Message = "Hello! THis small help";
-            return View();
-        }
     }
 }

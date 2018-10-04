@@ -12,6 +12,10 @@ namespace Lifestyle.Controllers
     {
         public ActionResult Login()
         {
+            if (User.Identity.IsAuthenticated == true)
+            {
+                return Redirect("~/Account/ProfileUser");
+            }
             return View();
         }
 
@@ -44,6 +48,10 @@ namespace Lifestyle.Controllers
 
         public ActionResult Register()
         {
+            if (User.Identity.IsAuthenticated == true)
+            {
+                return Redirect("~/Account/ProfileUser");
+            }
             return View();
         }
 

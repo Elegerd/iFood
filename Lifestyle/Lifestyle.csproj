@@ -152,6 +152,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\DaybookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -242,6 +243,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Daybook\Index.cshtml" />
     <Content Include="Views\Daybook\Help.cshtml" />
+    <Content Include="Views\Articles\ArticlesNumOne.cshtml" />
+    <Content Include="Views\Articles\ArcticleNumTwo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="img\" />

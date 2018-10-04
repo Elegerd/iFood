@@ -1,58 +1,70 @@
-﻿@model Lifestyle.Models.Authorization
-@{
-    ViewBag.Title = "Home Page";
+﻿@{
+    Layout = null;
 }
 
-
 <style>
-    
-    div {
-        border-radius: 5px;
-    }
-    .container-fluid {
-        padding-top: 13px;
-        padding-bottom: 19px;
-    }
 </style>
 
-
-<div class="row">
-    <div class="col-sm-9" style="border-color:darkgreen">
-
-    </div>
-
-    <div class="col-sm-3  ">
-
-        <span class="border border-primary"></span>
-
-        <div class="container-fluid" style="background-color:cornflowerblue"  >
-
-
-         @using (Html.BeginForm())
-         {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <form>
-                <div class="form-group">
-                    <label for="email">Почтовый ящик: </label>
-                    @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label for="pwd">Пароль: </label>
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox">Запомнить меня</label>
-                </div>
-                <form class="form-inline">
-                    <button type="submit" class="mybutton"> Войти </button>
-                    <a href="~/Account/Register" class="button"> Регистрация </a>
-                </form>
-             
-            </form>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <title>Домашняя страница</title>
+    <style>
+        .col-xs-6 {
+            text-align: center;
+            font-size: 40px;
+            font-weight: 300;
+            color: #fff;
+            -moz-background-clip: border;
+            -webkit-background-clip: border;
+            background-clip: border-box;
+            -moz-background-clip: padding;
+            -webkit-background-clip: padding;
+            background-clip: padding-box;
+            -moz-background-clip: content;
+            -webkit-background-clip: content;
+            background-clip: content-box;
         }
+
+            .col-xs-6:nth-child(1) {
+                background-color: moccasin;
+                border-radius: 50px;
+            }
+
+            .col-xs-6:nth-child(2) {
+                background-color: moccasin;
+                border-radius: 50px;
+            }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="h3 text-center" style="margin-top: 30px; margin-bottom: 30px;">Адаптивного макета</h1>
+        <div class="lead text-center" style="margin-bottom: 16px;">
+            Текущая контрольная точка:
+            <span class="visible-lg-inline">LG</span>
         </div>
     </div>
-</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6" style="height: 300px;">
+                #1
+            </div>
+            <div class="col-xs-6" style="height: 300px;">
+                #2
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

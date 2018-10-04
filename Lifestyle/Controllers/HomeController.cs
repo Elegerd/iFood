@@ -12,35 +12,15 @@ namespace Lifestyle.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Index(Authorization model)
-        {
-            if (ModelState.IsValid)
+            if (User.Identity.IsAuthenticated == false)
             {
-                // поиск пользователя в бд
-                User user = null;
-                using (UserContext db = new UserContext())
-                {
-                    user = db.Users.FirstOrDefault(u => u.Email == model.Login && u.Password == model.Password);
-
-                }
-                if (user != null)
-                {
-                    FormsAuthentication.SetAuthCookie(model.Login, true);
-                    return RedirectToAction("ProfileUser", "Account");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Пользователя с таким логином и паролем нет");
-                }
+                ViewBag.Verification = "Войти";
             }
-
-            return View(model);
+            else
+            {
+                return Redirect("~/Account/ProfileUser");
+            }
+            return View();
         }
 
         [Authorize]

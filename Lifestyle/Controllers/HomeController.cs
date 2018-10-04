@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 
 namespace Lifestyle.Controllers
-{//
+{
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -47,7 +47,6 @@ namespace Lifestyle.Controllers
         public ActionResult Help()
         {
             ViewBag.Message = "Hello! THis small help";
-
             return View();
         }
     }

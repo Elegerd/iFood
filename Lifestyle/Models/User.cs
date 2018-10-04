@@ -14,7 +14,6 @@ namespace Lifestyle.Models
         public string Email { get; set; }
 
         [DisplayName("Пароль")]
-
         public string Password { get; set; }
 
         [DisplayName("Имя")]

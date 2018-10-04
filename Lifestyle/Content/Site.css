@@ -3,10 +3,11 @@
     /*
      background-size: 100%;
    */
-    background-position:center center;
-    background-size:cover;
+    background-position: center center;
+    background-size: cover;
     padding-top: 80px;
     padding-bottom: 20px;
+    background-attachment:fixed;
 }
 
 

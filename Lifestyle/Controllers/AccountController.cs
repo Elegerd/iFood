@@ -101,25 +101,24 @@ namespace Lifestyle.Controllers
         }
 
         [Authorize]
-        public ActionResult ProfileUser()
+        public ActionResult ProfileUser(User user)
         {
             string email = User.Identity.Name;
-
-            User user = db.Users.FirstOrDefault(topic => topic.Email == email);
+            user = db.Users.FirstOrDefault(x => x.Email == email);
 
             if (user != null)
             {
                 return View(user);
             }
-
             return HttpNotFound();
         }
+
 
         [Authorize]
         public ActionResult EditUser()
         {
             string email = User.Identity.Name;
-            User user = db.Users.FirstOrDefault(topic => topic.Email == email);
+            User user = db.Users.FirstOrDefault(x => x.Email == email);
 
             if (user != null)
                 {
@@ -142,22 +141,3 @@ namespace Lifestyle.Controllers
         }
     }
 }
-
-/*
-        public ActionResult ProfileUser()
-        {          
-           /* ViewBag.Message = User.Identity.Name;
-          
-                tableData = db.Zakazs.Find(id);
-                if (tableData != null)
-                {
-                    if (tableData.AuthorId == User.Identity.Name)
-                    {
-                        PrivateTable.Add(new Zakaz() { Id = tableData.Id, AuthorId = tableData.AuthorId, Text = tableData.Text, Title = tableData.Title });
-                    }
-                }
-            }
-            ViewBag.Message2 = PrivateTable;
-            return View();
-        }
-*/

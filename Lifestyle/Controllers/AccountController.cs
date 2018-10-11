@@ -113,7 +113,7 @@ namespace Lifestyle.Controllers
            /* }*/
         }
 
-        
+       // [Authorize]
         public ActionResult EditUser(int? UserId)
         {
             if (UserId == null)
@@ -131,7 +131,7 @@ namespace Lifestyle.Controllers
             }
             return HttpNotFound();
         }
-
+      //  [Authorize]
         [HttpPost]
         public ActionResult EditUser(User user)
         {

@@ -12,6 +12,8 @@ namespace Lifestyle.Controllers
 {
     public class AccountController : Controller
     {
+        private UserContext db = new UserContext();
+
         public ActionResult Login()
         {
             if (User.Identity.IsAuthenticated == true)
@@ -101,38 +103,34 @@ namespace Lifestyle.Controllers
         [Authorize]
         public ActionResult ProfileUser()
         {
-           /* using (UserContext db = new UserContext())
-            {
-                User user = db.Users;
+            string email = User.Identity.Name;
 
-                if (user == null)
-                {
-                    return HttpNotFound();
-                }*/
-                return View();
-           /* }*/
-        }
+            User user = db.Users.FirstOrDefault(topic => topic.Email == email);
 
-       // [Authorize]
-        public ActionResult EditUser(int? UserId)
-        {
-            if (UserId == null)
+            if (user != null)
             {
-                return HttpNotFound();
+                return View(user);
             }
 
-            using (UserContext db = new UserContext())
-            {
-                User user = db.Users.Find(UserId);
-                if (user != null)
+            return HttpNotFound();
+        }
+
+        [Authorize]
+        public ActionResult EditUser()
+        {
+            string email = User.Identity.Name;
+            User user = db.Users.FirstOrDefault(topic => topic.Email == email);
+
+            if (user != null)
                 {
                     return View(user);
                 }
-            }
             return HttpNotFound();
         }
-      //  [Authorize]
+
         [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
         public ActionResult EditUser(User user)
         {
             using (UserContext db = new UserContext())

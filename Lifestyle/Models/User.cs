@@ -9,17 +9,24 @@ namespace Lifestyle.Models
 {
     public class User
     {
+        [DisplayName("UserId")]
         public int UserId { get; set; }
 
+        [DisplayName("Почтовый ящик")]
+        [Required(ErrorMessage = "Пожалуйста, введите Ваш адрес электронной почты")]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Пожалуйста, введите действительный адрес электронной почты")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "Пожалуйста, введите пароль")]
+        [DataType(DataType.Password)]
         [DisplayName("Пароль")]
         public string Password { get; set; }
 
         [DisplayName("Имя")]
         public string Name { get; set; }
 
-        [DisplayFormat(DataFormatString = "{dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Пожалуйста, введите дату рождения")]
         [DisplayName("Дата рождения")]
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }

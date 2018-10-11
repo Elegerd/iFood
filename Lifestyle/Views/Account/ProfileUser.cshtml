@@ -1,18 +1,39 @@
 ﻿@model Lifestyle.Models.User
 
-<div class="container" style="background-color:rgb(0, 0, 0, 0.5); margin-top:30px ; border-radius:20px">
-    <div class="lead text-center" style="margin-bottom: 16px;">
-        @using (Html.BeginForm())
-        {
-            <l>
-                @Html.DisplayFor(model => model.Email)
-            </l>
-            <l>
-                @Html.DisplayFor(model => model.Password)
-            </l>
-            <l>
-                @Html.DisplayFor(model => model.UserId)
-            </l>
-                }
+
+@using (Html.BeginForm())
+{
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
         </div>
+        <div class="col-sm-8" style="border-color:darkgreen">
+            <div class="container" style="background-color:rgb(0, 0, 0, 0.5); margin-top:30px ; border-radius:20px">
+                <div class="lead text-center" style="margin-bottom: 16px;">
+                    <p>
+                        Email:  @Html.DisplayFor(model => model.Email)
+                    </p>
+                    <p>
+                        Имя:  @Html.DisplayFor(model => model.Name)
+                    </p>
+                    <p>
+                        Пол: @Html.DisplayFor(model => model.Sex)
+                    </p>
+                    <p>
+                        Рост:  @Html.DisplayFor(model => model.Height)
+                    </p>
+                    <p>
+                        Вес:  @Html.DisplayFor(model => model.Weight)
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+        </div>
+    </div>
+
+
 </div>
+       
+                }
+          

@@ -1,7 +1,8 @@
-﻿
+﻿@model Lifestyle.Models.User
 @{
-    ViewBag.Title = "ProfileUser";
+                ViewBag.Title = "ProfileUser";
 }
 
 <h2>Профиль пользователя</h2>
 
+@Html.HiddenFor(model => model.UserId)

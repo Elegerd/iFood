@@ -97,9 +97,19 @@ namespace Lifestyle.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
         public ActionResult ProfileUser()
         {
-            return View();
+           /* using (UserContext db = new UserContext())
+            {
+                User user = db.Users;
+
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }*/
+                return View();
+           /* }*/
         }
     }
 }

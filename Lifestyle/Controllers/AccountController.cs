@@ -101,25 +101,27 @@ namespace Lifestyle.Controllers
         }
 
         [Authorize]
-        public string ProfileUser(int? id)
+        public ActionResult ProfileUser()
         {
+            string email = User.Identity.Name;
 
-            string e = User.Identity.Name;
-            return e;
+            User user = db.Users.FirstOrDefault(topic => topic.Email == email);
 
-            User user = db.Users.FirstOrDefault(topic => topic.UserId == id);
+            if (user != null)
+            {
+                return View(user);
+            }
+
+            return HttpNotFound();
         }
 
         [Authorize]
-        public ActionResult EditUser(int? id)
+        public ActionResult EditUser()
         {
-            if (id == null)
-            {
-                return HttpNotFound();
-            }
+            string email = User.Identity.Name;
+            User user = db.Users.FirstOrDefault(topic => topic.Email == email);
 
-                User user = db.Users.Find(id);
-                if (user != null)
+            if (user != null)
                 {
                     return View(user);
                 }

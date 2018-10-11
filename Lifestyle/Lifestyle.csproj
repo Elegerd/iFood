@@ -245,6 +245,7 @@
     <Content Include="Views\Daybook\Help.cshtml" />
     <Content Include="Views\Articles\ArticlesNumOne.cshtml" />
     <Content Include="Views\Articles\ArcticleNumTwo.cshtml" />
+    <Content Include="Views\Account\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="img\" />

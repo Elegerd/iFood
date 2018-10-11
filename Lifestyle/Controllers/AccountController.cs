@@ -1,7 +1,9 @@
 ﻿using Lifestyle.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -42,7 +44,6 @@ namespace Lifestyle.Controllers
                     ModelState.AddModelError("", "Пользователя с таким логином и паролем нет");
                 }
             }
-
             return View(model);
         }
 
@@ -100,6 +101,36 @@ namespace Lifestyle.Controllers
         public ActionResult ProfileUser()
         {
             return View();
+        }
+
+        
+        public ActionResult EditUser(int? UserId)
+        {
+            if (UserId == null)
+            {
+                return HttpNotFound();
+            }
+
+            using (UserContext db = new UserContext())
+            {
+                User user = db.Users.Find(UserId);
+                if (user != null)
+                {
+                    return View(user);
+                }
+            }
+            return HttpNotFound();
+        }
+
+        [HttpPost]
+        public ActionResult EditUser(User user)
+        {
+            using (UserContext db = new UserContext())
+            {
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return RedirectToAction("~/Daybook/Index");
         }
     }
 }

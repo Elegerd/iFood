@@ -108,6 +108,14 @@ namespace Lifestyle.Controllers
 
             if (user != null)
             {
+                if (user.Sex == null)
+                    ViewBag.S = "Не выбран";
+                else
+                    ViewBag.S = user.Sex == true ? "Мужской" : "Женский";
+
+                ViewBag.H = user.Height == null ? "Не выбран" : user.Height.ToString();
+                ViewBag.W = user.Weight == null ? "Не выбран" : user.Weight.ToString();
+
                 return View(user);
             }
             return HttpNotFound();
@@ -121,9 +129,9 @@ namespace Lifestyle.Controllers
             User user = db.Users.FirstOrDefault(x => x.Email == email);
 
             if (user != null)
-                {
-                    return View(user);
-                }
+            {
+                return View(user);
+            }
             return HttpNotFound();
         }
 
@@ -132,12 +140,14 @@ namespace Lifestyle.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditUser(User user)
         {
-            using (UserContext db = new UserContext())
+            if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
+                return RedirectToAction("~/Daybook/Index");
             }
-            return RedirectToAction("~/Daybook/Index");
+            return View(user);
+
         }
     }
 }

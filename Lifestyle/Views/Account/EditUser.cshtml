@@ -3,8 +3,6 @@
     ViewBag.Title = "Редактирование пользователя";
 }
 
-@Html.ValidationSummary(false)
-
 <h2>Редактирование пользователя</h2>
 
 @using (Html.BeginForm())
@@ -62,7 +60,8 @@
         </form>
     </div>
 
-    <button type="submit" class="btn btn-primary">Сохранить</button>
-    @Html.ActionLink("Отмена", "Index", null, new { @class = "btn btn-default" })
+
+    <button type="submit" class="btn btn-primary"> Сохранить </button>
+    <a href="~/Daybook" class="btn btn-default"> Отмена </a>
 }
 

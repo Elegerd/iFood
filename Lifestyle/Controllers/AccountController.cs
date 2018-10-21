@@ -109,20 +109,19 @@ namespace Lifestyle.Controllers
             if (user != null)
             {
                 if (user.Sex == null)
-                    ViewBag.S = "Не выбран";
+                    @ViewData["Sex"] = "Не выбран";
                 else
-                    ViewBag.S = user.Sex == true ? "Мужской" : "Женский";
+                    @ViewData["Sex"] = user.Sex == true ? "Мужской" : "Женский";
 
-                ViewBag.H = user.Height == null ? "Не выбран" : user.Height.ToString();
-                ViewBag.W = user.Weight == null ? "Не выбран" : user.Weight.ToString();
+                ViewData["Height"] = user.Height == null ? "Не выбран" : user.Height.ToString();
+                ViewData["Weight"] = user.Weight == null ? "Не выбран" : user.Weight.ToString();
 
                 return View(user);
             }
             return HttpNotFound();
         }
 
-
-        [Authorize]
+        [HttpGet]
         public ActionResult EditUser()
         {
             string email = User.Identity.Name;
@@ -136,18 +135,15 @@ namespace Lifestyle.Controllers
         }
 
         [HttpPost]
-        [Authorize]
-        [ValidateAntiForgeryToken]
         public ActionResult EditUser(User user)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("~/Daybook/Index");
+                return RedirectToAction("ProfileUser");
             }
             return View(user);
-
         }
     }
 }

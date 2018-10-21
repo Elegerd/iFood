@@ -32,10 +32,10 @@ namespace Lifestyle.Models
         public DateTime BirthDate { get; set; }
 
         [DisplayName("Рост")]
-        public int Height { get; set; }
+        public int ?Height { get; set; }
 
         [DisplayName("Вес")]
-        public int Weight { get; set; }
+        public int ?Weight { get; set; }
 
         [DisplayName("Пол")]
         public bool? Sex { get; set; }

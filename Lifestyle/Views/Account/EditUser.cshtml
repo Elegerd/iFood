@@ -5,63 +5,63 @@
 
 <h2>Редактирование пользователя</h2>
 
-@using (Html.BeginForm())
-{
+<form method="post" action="">
+
     @Html.AntiForgeryToken()
+    <div class="form-horizontal">
 
-    <div class="form-group">
-        <label>Id</label>
-        @Html.TextBoxFor(x => x.UserId, new { @readonly = "readonly", @class = "form-control" })
-    </div>
+        <div class="form-group">
+            <label>Индификатор</label>
+            @Html.TextBoxFor(x => x.UserId, new { @readonly = "readonly", @class = "form-control" })
+        </div>
 
-    <div class="form-group">
-        <label>Имя</label>
-        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-    </div>
+        <div class="form-group">
+            <label>Имя</label>
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        </div>
 
-    <div class="form-group">
-        <label>Дата Рождения</label>
-        @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
-    </div>
+        <div class="form-group">
+            <label>Дата Рождения</label>
+            @Html.EditorFor(x => x.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(x => x.BirthDate, "", new { @class = "text-danger" })
+        </div>
 
-    <div class="form-group">
-        <label>Email</label>
-        @Html.TextBoxFor(x => x.Email, new { @readonly = "readonly", @class = "form-control" })
-    </div>
+        <div class="form-group">
+            <label>Email</label>
+            @Html.TextBoxFor(x => x.Email, new { @readonly = "readonly", @class = "form-control" })
+        </div>
 
-    <div class="form-group">
-        <label>Пароль</label>
-        @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @type = "password" })
-    </div>
+        <div class="form-group">
+            <label>Пароль</label>
+            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @type = "password" })
+            @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+        </div>
 
-    <div class="form-group">
-        <label>Рост</label>
-        @Html.TextBoxFor(x => x.Height, new { @class = "form-control" })
-    </div>
+        <div class="form-group">
+            <label>Рост</label>
+            @Html.TextBoxFor(x => x.Height, new { @class = "form-control" })
+        </div>
 
-    <div class="form-group">
-        <label>Вес</label>
-        @Html.TextBoxFor(x => x.Weight, new { @class = "form-control" })
-    </div>
+        <div class="form-group">
+            <label>Вес</label>
+            @Html.TextBoxFor(x => x.Weight, new { @class = "form-control" })
+        </div>
 
-    <div class="container">
-        <p>Выберете пол: </p>
-        <form>
+        <div class="container">
+            <p>Выберете пол: </p>
             <div class="radio">
-                <label><input id="Sex" type="radio" name="Sex" value="true" checked>Мужской</label>
+                <label><input id="Sex" type="radio" name="Sex" value="true">Мужской</label>
             </div>
             <div class="radio">
-                <label><input id="Sex" type="radio" name="Sex" value="false" checked>Женский</label>
+                <label><input id="Sex" type="radio" name="Sex" value="false">Женский</label>
             </div>
             <div class="radio">
-                <label><input id="Sex" type="radio" name="Sex" value="NULL" checked>Не выбран</label>
+                <label><input id="Sex" type="radio" name="Sex" value="NULL">Не выбран</label>
             </div>
-        </form>
+        </div>
     </div>
-
 
     <button type="submit" class="btn btn-primary"> Сохранить </button>
-    <a href="~/Daybook" class="btn btn-default"> Отмена </a>
-}
+    <a href="ProfileUser" class="btn btn-default"> Отмена </a>
 
+</form>

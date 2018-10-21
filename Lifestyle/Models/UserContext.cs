@@ -9,7 +9,7 @@ namespace Lifestyle.Models
     public class UserContext : DbContext
     {
         public UserContext() :
-            base("Database1")
+            base("DefaultConnection")
         { }
 
         public DbSet<User> Users { get; set; }

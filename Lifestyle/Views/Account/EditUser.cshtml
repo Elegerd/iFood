@@ -12,7 +12,7 @@
     <div class="form-horizontal">
 
         <div class="form-group">
-            <label>Индификатор</label>
+            <label>Индентификатор</label>
             @Html.TextBoxFor(x => x.UserId, new { @readonly = "readonly", @class = "form-control" })
         </div>
 
@@ -23,7 +23,7 @@
 
         <div class="form-group">
             <label>Дата Рождения</label>
-            @Html.EditorFor(x => x.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.TextBoxFor(x => x.BirthDate, "{0:dd.MM.yyyy}", new {  @class = "form-control"  })
             @Html.ValidationMessageFor(x => x.BirthDate, "", new { @class = "text-danger" })
         </div>
 
@@ -50,15 +50,49 @@
 
         <div class="container">
             <p>Выберете пол: </p>
-            <div class="radio">
-                <label><input id="Sex" type="radio" name="Sex" value="true">Мужской</label>
-            </div>
-            <div class="radio">
-                <label><input id="Sex" type="radio" name="Sex" value="false">Женский</label>
-            </div>
-            <div class="radio">
-                <label><input id="Sex" type="radio" name="Sex" value="NULL">Не выбран</label>
-            </div>
+            @{
+                if (Model.Sex == true)
+                {
+                    <div class="radio">
+                        <label><input id="Sex" type="radio" name="Sex" value="true" checked>Мужской</label>
+                    </div>
+                    <div class="radio">
+                        <label><input id="Sex" type="radio" name="Sex" value="false">Женский</label>
+                    </div>
+                    <div class="radio">
+                        <label><input id="Sex" type="radio" name="Sex" value="NULL">Не выбран</label>
+                    </div>
+                }
+                else
+                {
+                    if (Model.Sex == false)
+                    {
+                        <div class="radio">
+                            <label><input id="Sex" type="radio" name="Sex" value="true">Мужской</label>
+                        </div>
+                        <div class="radio">
+                            <label><input id="Sex" type="radio" name="Sex" value="false" checked>Женский</label>
+                        </div>
+                        <div class="radio">
+                            <label><input id="Sex" type="radio" name="Sex" value="NULL">Не выбран</label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="radio">
+                            <label><input id="Sex" type="radio" name="Sex" value="true">Мужской</label>
+                        </div>
+                        <div class="radio">
+                            <label><input id="Sex" type="radio" name="Sex" value="false">Женский</label>
+                        </div>
+                        <div class="radio">
+                            <label><input id="Sex" type="radio" name="Sex" value="NULL" >Не выбран</label>
+                        </div>
+                    }
+                }
+
+            }
+
         </div>
     </div>
 

@@ -3,85 +3,75 @@
     ViewBag.Title = "Авторизация";
 }
 
-<style>
 
-    div {
-        border-radius: 5px;
-    }
+<div class="container body-content" >
+    <div class="row" style="margin-top:22px;">
+        @*<div class="col-sm-8" style="border-color:darkgreen">*@
 
-    .container-fluid {
-        padding-top: 13px;
-        padding-bottom: 19px;
-    }
-</style>
+            @*<div class="row">*@
+                <div class="col-sm-4" style="background-color:rgb(0, 0, 0, 0.8); border-radius:20px">
 
 
-<div class="row">
-    <div class="col-sm-9" style="border-color:darkgreen">
-
-        <div class="row">
-            <div class="col-sm-4" style="background-color:rgb(0, 0, 0, 0.8); margin-top:30px ; border-radius:20px">
-
-                
                     <a href="~/Articles/ArticlesNumOne" target="_blank">
                         <img src="../img/1.jpg" alt="Nature" style="width:100%">
                         <div class="caption">
                             <p>6 завтраков для чемпионов</p>
                         </div>
-                    </a>             
+                    </a>
+
+                </div>
+
+                <div class="col-sm-4" style="background-color:rgb(0, 0, 0, 0.5); margin-left:10px; border-radius:20px">
+                    <a href="~/Articles/ArcticleNumTwo" target="_blank">
+                        <img src="../img/2.jpg" alt="Nature" style="width:100%">
+                        <div class="caption">
+                            <p>Гид по здоровому питанию для новичков</p>
+                        </div>
+                    </a>
+                </div>
+
+                @*<div class="col-sm-4" style="background-color:rgb(0, 0, 0, 0.8); border-radius:20px">
+                    <a href="~/Articles/ArcticleNumTwo" target="_blank">
+                        <img src="../img/2.jpg" alt="Nature" style="width:100%">
+                        <div class="caption">
+                            <p>Гид по здоровому питанию для новичков</p>
+                        </div>
+                    </a>
+                </div>
 
             </div>
+        </div>*@
 
-            <div class="col-sm-4" style="background-color:rgb(0, 0, 0, 0.5); margin-top:30px ;margin-left:10px; border-radius:20px">
-                <a href="~/Articles/ArcticleNumTwo" target="_blank">
-                    <img src="../img/2.jpg" alt="Nature" style="width:100%">
-                    <div class="caption">
-                        <p>Гид по здоровому питанию для новичков</p>
-                    </div>
-                </a>
-            </div>
+        <div class="col-sm-4  ">
 
-            <div class="col-sm-4" style="background-color:rgb(0, 0, 0, 0.8); margin-top:30px ; border-radius:20px">
-                <a href="~/Articles/ArcticleNumTwo" target="_blank">
-                    <img src="../img/2.jpg" alt="Nature" style="width:100%">
-                    <div class="caption">
-                        <p>Гид по здоровому питанию для новичков</p>
-                    </div>
-                </a>
-            </div>
+            <span class="border border-primary"></span>
 
-        </div>
-        </div>
+            <div class="container-fluid" style="background-color:cornflowerblue">
 
-    <div class="col-sm-3  ">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <form>
+                        <div class="form-group">
+                            <label for="email">Почтовый ящик: </label>
+                            @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter email address" } })
+                            @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Пароль: </label>
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter the password" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
 
-        <span class="border border-primary"></span>
+                        <form class="form-inline">
+                            <button type="submit" class="mybutton"> Войти </button>
+                            <a href="~/Account/Register" class="button"> Регистрация </a>
+                        </form>
 
-        <div class="container-fluid" style="background-color:cornflowerblue">
-
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <form>
-                    <div class="form-group">
-                        <label for="email">Почтовый ящик: </label>
-                        @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter email address" } })
-                        @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd" >Пароль: </label>
-                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter the password" } })
-                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                    </div>
-
-                    <form class="form-inline">
-                        <button type="submit" class="mybutton"> Войти </button>
-                        <a href="~/Account/Register" class="button"> Регистрация </a>
                     </form>
-
-                </form>
-            }
+                }
+            </div>
         </div>
     </div>
 </div>

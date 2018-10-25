@@ -12,6 +12,7 @@ namespace Lifestyle.Controllers
     {
         public ActionResult Index()
         {
+
             if (User.Identity.IsAuthenticated == false)
             {
                 ViewBag.Verification = "Войти";

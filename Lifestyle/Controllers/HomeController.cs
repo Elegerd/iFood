@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Lifestyle.Models.Product;
 
 namespace Lifestyle.Controllers
 {
@@ -12,7 +13,6 @@ namespace Lifestyle.Controllers
     {
         public ActionResult Index()
         {
-
             if (User.Identity.IsAuthenticated == false)
             {
                 ViewBag.Verification = "Войти";

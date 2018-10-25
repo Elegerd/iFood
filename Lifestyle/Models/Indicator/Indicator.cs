@@ -4,21 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
-namespace Lifestyle.Models
+namespace Lifestyle.Models.Indicator
 {
-    public class DefaultProduct
+    public class Indicator
     {
         public int Id { get; set; }
-
-        [DisplayName("Наименование")]
-        public string Name { get; set; }
-
-        [DisplayName("Калории")]
-        public int Calories { get; set; }
-        public int Fats { get; set; }
-        public int Protein { get; set; }
-        public int Carbs { get; set; }
-
         public double Fiber { get; set; }
         public double Iron { get; set; }
         public double Calcium { get; set; }

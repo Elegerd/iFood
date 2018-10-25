@@ -1,15 +1,54 @@
-﻿
+﻿@using Lifestyle.Models
+@model Lifestyle.Models.DefaultProduct
+
 @{
     ViewBag.Title = "Daybook";
     Layout = "~/Views/Shared/Layout_2.cshtml";
 }
 
+<style>
+    .mainselection {
+        overflow: hidden;
+        width: 350px;
+        margin-left: 35px;
+        background: transparent;
+        color: black;
+        text-align: center
+    }
+
+    select {
+        border: 0;
+        background: transparent;
+        height: 32px;
+        border: 1px solid black;
+        width: 350px;
+        -webkit-appearance: none;
+    }
+</style>
+
 <div class="container" style="background-color:rgb(0, 0, 0, 0.8); margin-top:30px ; border-radius:20px">
     <div class="lead text-center" style="margin-bottom: 16px;">
         <h2>Диетический дневник</h2>
         <h4>
-        Диетический дневник - один из способов контроля за своим питанием, который выражается в фиксировании всей потребляемой пищи в специальном дневнике.
-        Дневник – это та «информационная база», на основе которой вы можете составить индивидуальную диету. Не самостоятельно, конечно, а с помощью нашего сайта.
-           </h4>
-</div>
+            Диетический дневник - один из способов контроля за своим питанием, который выражается в фиксировании всей потребляемой пищи в специальном дневнике.
+            Дневник – это та «информационная база», на основе которой вы можете составить индивидуальную диету. Не самостоятельно, конечно, а с помощью нашего сайта.
+        </h4>
+
+        <p>Необходимые калории:@ViewData["Calories"]</p>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                @Html.DropDownListFor(m => m.Id, ViewBag.Product as SelectList, "Select Product", new { htmlAttributes = new { @class = "mainselection" } })
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Добавить" class="btn btn-default"  />
+                </div>
+            </div>
+        }
+
+    </div>
 </div>

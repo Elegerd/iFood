@@ -109,9 +109,9 @@ namespace Lifestyle.Controllers
             if (user != null)
             {
                 if (user.Sex == null)
-                    @ViewData["Sex"] = "Не выбран";
+                    ViewData["Sex"] = "Не выбран";
                 else
-                    @ViewData["Sex"] = user.Sex == true ? "Мужской" : "Женский";
+                    ViewData["Sex"] = user.Sex == true ? "Мужской" : "Женский";
 
                 ViewData["Height"] = user.Height == null ? "Не выбран" : user.Height.ToString();
                 ViewData["Weight"] = user.Weight == null ? "Не выбран" : user.Weight.ToString();
@@ -124,8 +124,7 @@ namespace Lifestyle.Controllers
         [HttpGet]
         public ActionResult EditUser()
         {
-            string email = User.Identity.Name;
-            User user = db.Users.FirstOrDefault(x => x.Email == email);
+            User user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
 
             if (user != null)
             {

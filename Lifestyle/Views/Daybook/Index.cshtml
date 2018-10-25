@@ -11,14 +11,14 @@
         overflow: hidden;
         width: 350px;
         margin-left: 35px;
-        background: transparent;
+        background: white;
         color: black;
         text-align: center
     }
 
     select {
         border: 0;
-        background: transparent;
+        background: white;
         height: 32px;
         border: 1px solid black;
         width: 350px;
@@ -36,19 +36,23 @@
 
         <p>Необходимые калории:@ViewData["Calories"]</p>
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            <div class="form-horizontal">
-                @Html.DropDownListFor(m => m.Id, ViewBag.Product as SelectList, "Select Product", new { htmlAttributes = new { @class = "mainselection" } })
-            </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Добавить" class="btn btn-default"  />
+        @Html.AntiForgeryToken()
+       
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-horizontal" style="color:black">
+                        @Html.DropDownListFor(m => m.Id, ViewBag.Product as SelectList, "Select Product...", new { htmlAttributes = new { @class = "mainselection" } })
+                    </div>
+                </div>
+                <div class="col-sm-6" style="width:10%">
+                    <div class="form-group">
+
+                        <input type="submit" value="Добавить" class="btn btn-default" />
+
+                    </div>
                 </div>
             </div>
-        }
-
+        
     </div>
 </div>

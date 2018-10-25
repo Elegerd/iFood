@@ -1592,14 +1592,14 @@ pre code {
     width: 750px;
   }
 }
-@media (min-width: 992px) {
+/*@media (min-width: 992px) {
   .container {
     width: 970px;
   }
-}
+}*/
 @media (min-width: 1200px) {
   .container {
-    width: 1170px;
+    /*width: 1170px;*/
   }
 }
 .container-fluid {
@@ -4546,7 +4546,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
   color: #555;
-  background-color: #e7e7e7;
+  background-color: transparent;
 }
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
@@ -4561,7 +4561,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #555;
-    background-color: #e7e7e7;
+    background-color: transparent;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,

@@ -47,9 +47,8 @@ namespace Lifestyle.Controllers
         {
             User user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
             SelectList product = new SelectList(dbProduct.DefaultProducts, "Id", "Name");
-            ViewBag.Product1 = product;
+            ViewBag.Product = product;
             model = dbProduct.DefaultProducts.FirstOrDefault(x => x.Id == model.Id);
-
             dbDaybook.Daybooks.Add(new DaybookProduct { UId = user.UserId, AProduct = model });
             dbDaybook.SaveChanges();
             return View();

@@ -36,9 +36,10 @@
 
         <p>Необходимые калории:@ViewData["Calories"]</p>
 
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        @Html.AntiForgeryToken()
-       
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-horizontal" style="color:black">
@@ -53,6 +54,6 @@
                     </div>
                 </div>
             </div>
-        
+        }
     </div>
 </div>

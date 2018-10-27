@@ -15,12 +15,61 @@
     }
 </style>
 
-<div class="semi-container">
+
 
     <div class="row">
-        <div class="col-sm-8" style="border-color:darkgreen">
+        <div class="col-sm-8">
 
-            <div class="row">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <a href="~/Articles/ArticlesNumOne" target="_blank">
+                            <img src="../img/1.jpg" alt="6 завтраков для чемпионов" style="width:100%;">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h4 style=" background-image:linear-gradient(transparent,rgb(0, 0, 0, 0.8) )">6 завтраков для чемпионов</h4>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="~/Articles/ArcticleNumTwo" target="_blank">
+                            <img src="../img/2.jpg" alt="Гид по здоровому питанию для новичков" style="width:100%;">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h4 style=" background-image:linear-gradient(transparent,rgb(0, 0, 0, 0.8) )">Гид по здоровому питанию для новичков</h4>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="~/Articles/ArticlesNumOne" target="_blank">
+                            <img src="../img/1.jpg" alt="Гид по здоровому питанию для новичков #2" style="width:100%;">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h4 style=" background-image:linear-gradient(transparent,rgb(0, 0, 0, 0.8) )">Гид по здоровому питанию для новичков #2</h4>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+            @*<div class="row">
                 <div class="col-sm-4" style="background-color:rgb(0, 0, 0, 0.8); margin-top:30px ; border-radius:20px">
 
 
@@ -51,7 +100,7 @@
                     </a>
                 </div>
 
-            </div>
+            </div>*@
         </div>
 
         <div class="col-sm-4  ">
@@ -86,4 +135,4 @@
             </div>
         </div>
     </div>
-</div>
+

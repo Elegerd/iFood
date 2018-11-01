@@ -24,6 +24,26 @@
         width: 350px;
         -webkit-appearance: none;
     }
+
+    caption, th {
+        color: #369;
+    }
+
+    caption {
+        margin-bottom: 5px;
+        text-align: left;
+    }
+
+    .simple-table {
+        margin: 17px auto;
+        border-collapse: collapse;
+    }
+
+        .simple-table td,
+        .simple-table th {
+            padding: 8px;
+            border: 1px solid #000;
+        }
 </style>
 
 <div class="container" style="background-color:rgb(0, 0, 0, 0.8); margin-top:30px ; border-radius:20px">
@@ -34,11 +54,26 @@
             Дневник – это та «информационная база», на основе которой вы можете составить индивидуальную диету. Не самостоятельно, конечно, а с помощью нашего сайта.
         </h4>
 
-        <p>Необходимые калории:@ViewData["Calories"]</p>
-
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
+            <p>Необходимые калории: @ViewData["Calories"]</p>
+
+
+            foreach (var item in ViewBag.dp)
+            {
+                <table class="simple-table">
+                    <tr>
+                        <td width="200">@item.Name</td>
+                        <td width="50">@item.Calories</td>
+                        <td width="50">@item.Fats</td>
+                        <td width="50">@item.Protein</td>
+                        <td width="50">@item.Carbs</td>
+                    </tr>
+                </table>
+            }
+
+
 
             <div class="row">
                 <div class="col-sm-6">
@@ -48,12 +83,10 @@
                 </div>
                 <div class="col-sm-6" style="width:10%">
                     <div class="form-group">
-
                         <input type="submit" value="Добавить" class="btn btn-default" />
-
                     </div>
                 </div>
             </div>
         }
-        </div>
+    </div>
 </div>

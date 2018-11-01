@@ -9,6 +9,6 @@ namespace Lifestyle.Models.Daybook
     {
         public int Id { get; set; }
         public int UId { get; set; }
-        public DefaultProduct AProduct { get; set; }
+        public int DPId { get; set; }
     }
 }

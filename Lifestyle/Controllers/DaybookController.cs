@@ -14,43 +14,63 @@ namespace Lifestyle.Controllers
         private UserContext db = new UserContext();
         private DaybookContext dbDaybook = new DaybookContext();
         private ProductContext dbProduct = new ProductContext();
-
+    
         [HttpGet]
         [Authorize]
         public ActionResult Index()
         {
-
             User user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
 
-            //IEnumerable<DefaultProduct> dayproducts = dbDaybook.Daybooks;
-            //ViewBag.DaybookProduct = dayproducts;
-
-            SelectList product = new SelectList(dbProduct.DefaultProducts, "Id", "Name");
-            ViewBag.Product = product;
-
+            int c = 0; 
+            var daybook = dbDaybook.Daybooks.Where(x => x.UId == user.UserId);
+            List<DefaultProduct> d_products = new List<DefaultProduct> { };
+            foreach (var item in daybook)
+            {
+                DefaultProduct defaultProduct = dbProduct.DefaultProducts.Find(item.DPId);
+                c += defaultProduct.Calories;
+                d_products.Add(defaultProduct);
+            }
+            ViewBag.dp = d_products;
+            ViewBag.Daybook = daybook;
             ViewData["Calories"] = (user.Weight * 10 + (user.Height * 6.25) -
             ((DateTime.UtcNow.Month < user.BirthDate.Month || (DateTime.UtcNow.Month == user.BirthDate.Month && DateTime.UtcNow.Day < user.BirthDate.Day)) ?
             (DateTime.UtcNow.Year - user.BirthDate.Year) : (DateTime.UtcNow.Year - user.BirthDate.Year) - 1) +
-            (user.Sex == true ? 5 : -161)) * 1.2;
+            (user.Sex == true ? 5 : -161)) * 1.2 - c;
+
+            ViewBag.Product = new SelectList(dbProduct.DefaultProducts, "Id", "Name");
 
             if (user.Sex == null || user.Height == null || user.Weight == null)
             {
                 return HttpNotFound();
             }
-
             return View();
         }
 
         [HttpPost]
         [Authorize]
-        public ActionResult Index(DefaultProduct model)
+        public ActionResult Index(int id)
         {
             User user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
-            SelectList product = new SelectList(dbProduct.DefaultProducts, "Id", "Name");
-            ViewBag.Product = product;
-            model = dbProduct.DefaultProducts.FirstOrDefault(x => x.Id == model.Id);
-            dbDaybook.Daybooks.Add(new DaybookProduct { UId = user.UserId, AProduct = model });
+            ViewBag.Product = new SelectList(dbProduct.DefaultProducts, "Id", "Name");
+            dbDaybook.Daybooks.Add(new DaybookProduct { UId = user.UserId, DPId = id});
             dbDaybook.SaveChanges();
+
+            int c = 0;
+            var daybook = dbDaybook.Daybooks.Where(x => x.UId == user.UserId);
+            List<DefaultProduct> d_products = new List<DefaultProduct> { };
+            foreach (var item in daybook)
+            {
+                DefaultProduct defaultProduct = dbProduct.DefaultProducts.Find(item.DPId);
+                c += defaultProduct.Calories;
+                d_products.Add(defaultProduct);
+            }
+            ViewBag.dp = d_products;
+            ViewBag.Daybook = daybook;
+            ViewData["Calories"] = (user.Weight * 10 + (user.Height * 6.25) -
+            ((DateTime.UtcNow.Month < user.BirthDate.Month || (DateTime.UtcNow.Month == user.BirthDate.Month && DateTime.UtcNow.Day < user.BirthDate.Day)) ?
+            (DateTime.UtcNow.Year - user.BirthDate.Year) : (DateTime.UtcNow.Year - user.BirthDate.Year) - 1) +
+            (user.Sex == true ? 5 : -161)) * 1.2 - c;
+
             return View();
         }
 

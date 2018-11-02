@@ -3,136 +3,128 @@
     ViewBag.Title = "Авторизация";
 }
 
-<style>
+<div class="container body-content">
+    <div class="loginbody-container center-block">
+        <div class="row-fluid">
+        
+            <div class="col-sm-8">
 
-    div {
-        border-radius: 5px;
-    }
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
 
-    .container-fluid {
-        padding-top: 13px;
-        padding-bottom: 19px;
-    }
-</style>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <a href="~/Articles/ArticlesNumOne" target="_blank">
+                                <img src="../img/1.jpg" alt="6 завтраков для чемпионов" style="width:100%;">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h3 style=" background-image:linear-gradient(transparent,rgb(0, 0, 0, 0.5) )"><strong style="-webkit-text-stroke:1px black; -webkit-text-fill-color:white">6 завтраков для чемпионов</strong></h3>
+                                </div>
+                            </a>
+                        </div>
 
+                        <div class="item">
+                            <a href="~/Articles/ArcticleNumTwo" target="_blank">
+                                <img src="../img/2.jpg" alt="Гид по здоровому питанию для новичков" style="width:100%;">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h3 style=" background-image:linear-gradient(transparent,rgb(0, 0, 0, 0.5))"><strong style="-webkit-text-stroke:1px black; -webkit-text-fill-color:white">Гид по здоровому питанию для новичков</strong></h3>
+                                </div>
+                            </a>
+                        </div>
 
-
-    <div class="row">
-        <div class="col-sm-8">
-
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                </ol>
-
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <a href="~/Articles/ArticlesNumOne" target="_blank">
-                            <img src="../img/1.jpg" alt="6 завтраков для чемпионов" style="width:100%;">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h4 style=" background-image:linear-gradient(transparent,rgb(0, 0, 0, 0.8) )">6 завтраков для чемпионов</h4>
-                            </div>
-                        </a>
+                        <div class="item">
+                            <a href="~/Articles/ArticlesNumOne" target="_blank">
+                                <img src="../img/1.jpg" alt="Гид по здоровому питанию для новичков #2" style="width:100%;">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h3 style=" background-image:linear-gradient(transparent,rgb(0, 0, 0, 0.5) )"><strong style="-webkit-text-stroke:1px black; -webkit-text-fill-color:white">Гид по здоровому питанию для новичков #2</strong></h3>
+                                </div>
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="item">
-                        <a href="~/Articles/ArcticleNumTwo" target="_blank">
-                            <img src="../img/2.jpg" alt="Гид по здоровому питанию для новичков" style="width:100%;">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h4 style=" background-image:linear-gradient(transparent,rgb(0, 0, 0, 0.8) )">Гид по здоровому питанию для новичков</h4>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="item">
-                        <a href="~/Articles/ArticlesNumOne" target="_blank">
-                            <img src="../img/1.jpg" alt="Гид по здоровому питанию для новичков #2" style="width:100%;">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h4 style=" background-image:linear-gradient(transparent,rgb(0, 0, 0, 0.8) )">Гид по здоровому питанию для новичков #2</h4>
-                            </div>
-                        </a>
-                    </div>
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>+
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
 
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                @*<div class="row">
+                        <div class="col-sm-4" style="background-color:rgb(0, 0, 0, 0.8); margin-top:30px ; border-radius:20px">
+
+
+                            <a href="~/Articles/ArticlesNumOne" target="_blank">
+                                <img src="../img/1.jpg" alt="Nature" style="width:100%">
+                                <div class="caption">
+                                    <p>6 завтраков для чемпионов</p>
+                                </div>
+                            </a>
+
+                        </div>
+
+                        <div class="col-sm-4" style="background-color:rgb(0, 0, 0, 0.5); margin-top:30px ;margin-left:10px; border-radius:20px">
+                            <a href="~/Articles/ArcticleNumTwo" target="_blank">
+                                <img src="../img/2.jpg" alt="Nature" style="width:100%">
+                                <div class="caption">
+                                    <p>Гид по здоровому питанию для новичков</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-sm-4" style="background-color:rgb(0, 0, 0, 0.8); margin-top:30px ; border-radius:20px">
+                            <a href="~/Articles/ArcticleNumTwo" target="_blank">
+                                <img src="../img/2.jpg" alt="Nature" style="width:100%">
+                                <div class="caption">
+                                    <p>Гид по здоровому питанию для новичков</p>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>*@
             </div>
 
-            @*<div class="row">
-                <div class="col-sm-4" style="background-color:rgb(0, 0, 0, 0.8); margin-top:30px ; border-radius:20px">
+            <div class="col-sm-4  ">
+                <div class="logform-container center-block">
+                    <span class="border border-primary"></span>
 
+                    <div class="container-fluid" style="background-color:cornflowerblue">
 
-                    <a href="~/Articles/ArticlesNumOne" target="_blank">
-                        <img src="../img/1.jpg" alt="Nature" style="width:100%">
-                        <div class="caption">
-                            <p>6 завтраков для чемпионов</p>
-                        </div>
-                    </a>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <form>
+                                <div class="form-group">
+                                    <label for="email">Почтовый ящик: </label>
+                                    @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter email address" } })
+                                    @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="pwd">Пароль: </label>
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter the password" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
 
+                                <form class="form-inline">
+                                    <button type="submit" class="mybutton"> Войти </button>
+                                    <a href="~/Account/Register" class="button"> Регистрация </a>
+                                </form>
+
+                            </form>
+                        }
+                    </div>
                 </div>
-
-                <div class="col-sm-4" style="background-color:rgb(0, 0, 0, 0.5); margin-top:30px ;margin-left:10px; border-radius:20px">
-                    <a href="~/Articles/ArcticleNumTwo" target="_blank">
-                        <img src="../img/2.jpg" alt="Nature" style="width:100%">
-                        <div class="caption">
-                            <p>Гид по здоровому питанию для новичков</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-4" style="background-color:rgb(0, 0, 0, 0.8); margin-top:30px ; border-radius:20px">
-                    <a href="~/Articles/ArcticleNumTwo" target="_blank">
-                        <img src="../img/2.jpg" alt="Nature" style="width:100%">
-                        <div class="caption">
-                            <p>Гид по здоровому питанию для новичков</p>
-                        </div>
-                    </a>
-                </div>
-
-            </div>*@
-        </div>
-
-        <div class="col-sm-4  ">
-
-            <span class="border border-primary"></span>
-
-            <div class="container-fluid" style="background-color:cornflowerblue">
-
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <form>
-                        <div class="form-group">
-                            <label for="email">Почтовый ящик: </label>
-                            @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter email address" } })
-                            @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Пароль: </label>
-                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter the password" } })
-                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                        </div>
-
-                        <form class="form-inline">
-                            <button type="submit" class="mybutton"> Войти </button>
-                            <a href="~/Account/Register" class="button"> Регистрация </a>
-                        </form>
-
-                    </form>
-                }
             </div>
         </div>
     </div>
+</div>
 

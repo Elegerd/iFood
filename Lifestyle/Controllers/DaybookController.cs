@@ -30,12 +30,13 @@ namespace Lifestyle.Controllers
                 c += defaultProduct.Calories;
                 d_products.Add(defaultProduct);
             }
+            ViewBag.c = c;
             ViewBag.dp = d_products;
             ViewBag.Daybook = daybook;
-            ViewData["Calories"] = (user.Weight * 10 + (user.Height * 6.25) -
+            ViewBag.Calories = (int)((user.Weight * 10 + (user.Height * 6.25) -
             ((DateTime.UtcNow.Month < user.BirthDate.Month || (DateTime.UtcNow.Month == user.BirthDate.Month && DateTime.UtcNow.Day < user.BirthDate.Day)) ?
             (DateTime.UtcNow.Year - user.BirthDate.Year) : (DateTime.UtcNow.Year - user.BirthDate.Year) - 1) +
-            (user.Sex == true ? 5 : -161)) * 1.2 - c;
+            (user.Sex == true ? 5 : -161)) * 1.2 - c);
 
             ViewBag.Product = new SelectList(dbProduct.DefaultProducts, "Id", "Name");
 
@@ -64,12 +65,14 @@ namespace Lifestyle.Controllers
                 c += defaultProduct.Calories;
                 d_products.Add(defaultProduct);
             }
+            ViewBag.c = c;
             ViewBag.dp = d_products;
             ViewBag.Daybook = daybook;
-            ViewData["Calories"] = (user.Weight * 10 + (user.Height * 6.25) -
+            ViewBag.Calories = (int)((user.Weight * 10 + (user.Height * 6.25) -
             ((DateTime.UtcNow.Month < user.BirthDate.Month || (DateTime.UtcNow.Month == user.BirthDate.Month && DateTime.UtcNow.Day < user.BirthDate.Day)) ?
             (DateTime.UtcNow.Year - user.BirthDate.Year) : (DateTime.UtcNow.Year - user.BirthDate.Year) - 1) +
-            (user.Sex == true ? 5 : -161)) * 1.2 - c;
+            (user.Sex == true ? 5 : -161)) * 1.2 - c);
+      
 
             return View();
         }

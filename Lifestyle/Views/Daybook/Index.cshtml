@@ -6,7 +6,41 @@
     Layout = "~/Views/Shared/Layout_2.cshtml";
 }
 
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Hours per Day'],
+                ['Калории', @ViewBag.Calories],
+                ['Текущие калории', @ViewBag.c],
+            ]);
+
+            var options = {
+                title: 'My Daily Activities',
+                pieHole: 0.4,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+
+
 <style>
+    
+   g{
+        color:white;
+    }
+
+
+    rect {
+        fill: white;
+    }
+
     .mainselection {
         overflow: hidden;
         width: 350px;
@@ -57,12 +91,21 @@
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-            <p>Необходимые калории: @ViewData["Calories"]</p>
+            <p>Необходимые калории: @ViewBag.Calories</p>
 
 
-            foreach (var item in ViewBag.dp)
-            {
-                <table class="simple-table">
+
+
+            <table class="simple-table">
+                <tr>
+                    <td>Название</td>
+                    <td>Калории</td>
+                    <td>Жиры</td>
+                    <td>Белки</td>
+                    <td>Углеводы</td>
+                </tr>
+                @foreach (var item in ViewBag.dp)
+                {
                     <tr>
                         <td width="200">@item.Name</td>
                         <td width="50">@item.Calories</td>
@@ -70,8 +113,9 @@
                         <td width="50">@item.Protein</td>
                         <td width="50">@item.Carbs</td>
                     </tr>
-                </table>
-            }
+                }
+            </table>
+
 
 
 
@@ -87,6 +131,11 @@
                     </div>
                 </div>
             </div>
+
+
+            <div id="donutchart" style="width: 900px; height: 500px;"></div>
+
         }
+
     </div>
 </div>

@@ -130,3 +130,45 @@ container-fluid.blackcontainer {
         
     }
 }
+
+
+/*////////////////////////////////////////////////////////////////////////31/10/18*/
+@media (min-width: 768px) {
+    .logform-container {
+        max-width: 260px;
+        width:auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .logform-container {
+        width: 314px;
+        /*max-width : 767px;*/
+    }
+}
+
+@media (max-width: 392px) {
+    .logform-container {
+        width: 215px;
+    }
+}
+
+/*rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr*/
+@media (min-width: 768px) {
+    .loginbody-container {
+        width: auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .loginbody-container {
+        width: 343px;
+        /*max-width : 767px;*/
+    }
+}
+
+@media (max-width: 392px) {
+    .loginbody-container {
+        width: 215px;
+    }
+}

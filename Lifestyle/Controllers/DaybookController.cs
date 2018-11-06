@@ -21,16 +21,25 @@ namespace Lifestyle.Controllers
         {
             User user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
 
-            int c = 0; 
+            int c = 0;
+            int f = 0;
+            int p = 0;
+            int car = 0;
             var daybook = dbDaybook.Daybooks.Where(x => x.UId == user.UserId);
             List<DefaultProduct> d_products = new List<DefaultProduct> { };
             foreach (var item in daybook)
             {
                 DefaultProduct defaultProduct = dbProduct.DefaultProducts.Find(item.DPId);
                 c += defaultProduct.Calories;
+                f += defaultProduct.Fats;
+                p += defaultProduct.Protein;
+                car += defaultProduct.Carbs;
                 d_products.Add(defaultProduct);
             }
             ViewBag.c = c;
+            ViewBag.f = f;
+            ViewBag.p = p;
+            ViewBag.car = car;
             ViewBag.dp = d_products;
             ViewBag.Daybook = daybook;
             ViewBag.Calories = (int)((user.Weight * 10 + (user.Height * 6.25) -
@@ -57,15 +66,24 @@ namespace Lifestyle.Controllers
             dbDaybook.SaveChanges();
 
             int c = 0;
+            int f = 0;
+            int p = 0;
+            int car = 0;
             var daybook = dbDaybook.Daybooks.Where(x => x.UId == user.UserId);
             List<DefaultProduct> d_products = new List<DefaultProduct> { };
             foreach (var item in daybook)
             {
                 DefaultProduct defaultProduct = dbProduct.DefaultProducts.Find(item.DPId);
                 c += defaultProduct.Calories;
+                f += defaultProduct.Fats;
+                p += defaultProduct.Protein;
+                car += defaultProduct.Carbs;
                 d_products.Add(defaultProduct);
             }
             ViewBag.c = c;
+            ViewBag.f = f;
+            ViewBag.p = p;
+            ViewBag.car = car;
             ViewBag.dp = d_products;
             ViewBag.Daybook = daybook;
             ViewBag.Calories = (int)((user.Weight * 10 + (user.Height * 6.25) -

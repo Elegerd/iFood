@@ -13,17 +13,40 @@
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
-                ['Task', 'Hours per Day'],
-                ['Калории', @ViewBag.Calories],
+                ['Task', 'Калории'],
+                ['Требуемые калории', @ViewBag.Calories],
                 ['Текущие калории', @ViewBag.c],
             ]);
 
             var options = {
-                title: 'My Daily Activities',
+                title: 'Калории',
                 pieHole: 0.4,
+
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+        }
+    </script>
+
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'БЖУ соотношение'],
+                ['Белки', @ViewBag.p],
+                ['Жиры', @ViewBag.f],
+                ['Углеводы', @ViewBag.car],
+
+            ]);
+
+            var options = {
+                title: 'БЖУ соотношение',
+                is3D: true,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
             chart.draw(data, options);
         }
     </script>
@@ -31,14 +54,25 @@
 
 
 <style>
-    
-   g{
-        color:white;
+
+    text {
+        fill: black;
+        // stroke:black;
+    }
+    /*g {
+        color: black;
+    }*/
+
+    svg {
+        width:auto;
+
+    }
+    rect {
+        fill: transparent;
     }
 
-
-    rect {
-        fill: white;
+    path {
+        /*stroke: black;*/
     }
 
     .mainselection {
@@ -80,7 +114,7 @@
         }
 </style>
 
-<div class="container" style="background-color:rgb(0, 0, 0, 0.8); margin-top:30px ; border-radius:20px">
+<div class="container center-block" style="background-color:rgb(0, 0, 0, 0.8); margin-top:30px ; border-radius:20px">
     <div class="lead text-center" style="margin-bottom: 16px;">
         <h2>Диетический дневник</h2>
         <h4>
@@ -96,7 +130,7 @@
 
 
 
-            <table class="simple-table">
+            <table class="simple-table ">
                 <tr>
                     <td>Название</td>
                     <td>Калории</td>
@@ -131,11 +165,22 @@
                     </div>
                 </div>
             </div>
-
-
-            <div id="donutchart" style="width: 900px; height: 500px;"></div>
-
         }
-
     </div>
 </div>
+
+
+<div class="container center-block" style="background-color:rgb(255, 255, 255, 0.8); margin-top:30px ; border-radius:20px">
+
+    <div class="col-sm-6">
+        <div id="donutchart"></div>
+    </div>
+    <div class="col-sm-6">
+        <div id="piechart_3d"></div>
+    </div>
+
+</div>
+
+
+
+

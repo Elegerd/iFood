@@ -146,11 +146,39 @@
                         <td width="50">@item.Fats</td>
                         <td width="50">@item.Protein</td>
                         <td width="50">@item.Carbs</td>
+                        <td>
+                            @Html.ActionLink("Удалить", "DelProduct", new { id = item.Id })
+                        </td>
                     </tr>
                 }
             </table>
 
+            @*<div class="container">               
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-danger  btn-xs" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" style="color:red">Modal Header</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p style="color:red">Some text in the modal.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>*@
 
 
             <div class="row">

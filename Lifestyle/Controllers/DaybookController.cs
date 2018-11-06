@@ -100,5 +100,17 @@ namespace Lifestyle.Controllers
         {
             return View();
         }
+
+        [Authorize]
+        public ActionResult DelProduct(int Id)
+        {
+            DaybookProduct b = dbDaybook.Daybooks.Find(Id);
+            if (b != null)
+            {
+                dbDaybook.Daybooks.Remove(b);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index", "Daybook");
+        }
     }
 }

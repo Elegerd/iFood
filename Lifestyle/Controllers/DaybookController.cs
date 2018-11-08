@@ -74,6 +74,7 @@ namespace Lifestyle.Controllers
             if (custom == false)
             {
                 dbDaybook.Daybooks.Add(new DaybookProduct { UserId = user.UserId, ProductId = productModel.DefaultProducts.Id, Custom = custom, Gram = gram });
+
             }
             else
             {

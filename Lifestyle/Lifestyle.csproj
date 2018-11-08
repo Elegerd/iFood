@@ -162,10 +162,11 @@
     <Compile Include="Models\Daybook\DaybookContext.cs" />
     <Compile Include="Models\Indicator\Indicator.cs" />
     <Compile Include="Models\Indicator\IndicatorContext.cs" />
+    <Compile Include="Models\Product\CustomProductContext.cs" />
     <Compile Include="Models\User\Auth.cs" />
     <Compile Include="Models\Product\DBInitializer.cs" />
-    <Compile Include="Models\Product\DefaultProduct.cs" />
-    <Compile Include="Models\Product\ProductContext.cs" />
+    <Compile Include="Models\Product\Product.cs" />
+    <Compile Include="Models\Product\DefaultProductContext.cs" />
     <Compile Include="Models\User\User.cs" />
     <Compile Include="Models\User\UserContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -250,6 +251,7 @@
     <Content Include="Views\Account\EditUser.cshtml" />
     <Content Include="Views\Shared\Layout_2.cshtml" />
     <Content Include="Views\Daybook\Index.cshtml" />
+    <Content Include="Views\Account\CustomProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2,12 +2,13 @@
 @{
     Layout = "~/Views/Shared/Layout_2.cshtml";
 }
+
 <div class="container body-content">
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        
-      
+
+
 
         <div class="container">
 
@@ -34,8 +35,5 @@
                 </div>
             </div>
         </div>
-
-
-
     }
 </div>  

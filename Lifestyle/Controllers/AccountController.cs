@@ -34,7 +34,6 @@ namespace Lifestyle.Controllers
                 using (UserContext db = new UserContext())
                 {
                     user = db.Users.FirstOrDefault(u => u.Email == model.Login && u.Password == model.Password);
-
                 }
                 if (user != null)
                 {
@@ -100,11 +99,12 @@ namespace Lifestyle.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
         [Authorize]
-        public ActionResult ProfileUser(User user)
+        public ActionResult ProfileUser()
         {
             string email = User.Identity.Name;
-            user = db.Users.FirstOrDefault(x => x.Email == email);
+            User user = db.Users.FirstOrDefault(x => x.Email == email);
 
             if (user != null)
             {
@@ -119,6 +119,40 @@ namespace Lifestyle.Controllers
                 return View(user);
             }
             return HttpNotFound();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult ProfileUser(CustomProduct customProduct)
+        {
+            string email = User.Identity.Name;
+            User user = db.Users.FirstOrDefault(x => x.Email == email);
+
+            if (ModelState.IsValid)
+            {
+                using (CustomProductContext db = new CustomProductContext())
+                {
+                    db.CustomProducts.Add(new CustomProduct
+                    {
+                        Name = customProduct.Name,
+                        Calories = customProduct.Calories,
+                        Fats = customProduct.Fats,
+                        Protein = customProduct.Protein,
+                        Carbs = customProduct.Carbs,
+                        Fiber = customProduct.Fiber,
+                        Iron = customProduct.Iron,
+                        Calcium = customProduct.Calcium,
+                        VitA = customProduct.VitA,
+                        VitC = customProduct.VitC,
+                        VitB12 = customProduct.VitB12,
+                        Folate = customProduct.Folate,
+                        UserId = user.UserId
+                    });
+                    db.SaveChanges();
+                    //customProduct = db.CustomProducts.Where(u => u.Name == customProduct.Name && u.Password == model.Password && u.BirthDate == model.BirthDate).FirstOrDefault();
+                }
+            }
+            return View(customProduct);
         }
 
         [HttpGet]
@@ -144,5 +178,50 @@ namespace Lifestyle.Controllers
             }
             return View(user);
         }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult CustomProduct()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult CustomProduct(CustomProduct customProduct)
+        {
+            string email = User.Identity.Name;
+            User user = db.Users.FirstOrDefault(x => x.Email == email);
+
+            if (ModelState.IsValid)
+            {
+                using (CustomProductContext db = new CustomProductContext())
+                {
+                    db.CustomProducts.Add(new CustomProduct
+                    {
+                        Name = customProduct.Name,
+                        Calories = customProduct.Calories,
+                        Fats = customProduct.Fats,
+                        Protein = customProduct.Protein,
+                        Carbs = customProduct.Carbs,
+                        Fiber = customProduct.Fiber,
+                        Iron = customProduct.Iron,
+                        Calcium = customProduct.Calcium,
+                        VitA = customProduct.VitA,
+                        VitC = customProduct.VitC,
+                        VitB12 = customProduct.VitB12,
+                        Folate = customProduct.Folate,
+                        UserId = user.UserId
+                    });
+                    db.SaveChanges();
+                    customProduct = db.CustomProducts.Where(u => u.Name == customProduct.Name && u.Calories == customProduct.Calories && u.Fats == customProduct.Fats 
+                    && u.Protein == customProduct.Protein && u.Carbs == customProduct.Carbs && u.Fiber == customProduct.Fiber && u.Iron == customProduct.Iron
+                    && u.Calcium == customProduct.Calcium && u.VitA == customProduct.VitA && u.VitC == customProduct.VitC && u.VitB12 == customProduct.VitB12
+                    && u.Folate == customProduct.Folate && u.UserId == user.UserId).FirstOrDefault();
+                }
+            }
+            return View(customProduct);
+        }
+
     }
 }

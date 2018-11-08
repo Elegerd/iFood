@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 
 namespace Lifestyle.Models.Product
 {
-    public class DBInitializer : DropCreateDatabaseAlways<ProductContext>
+    public class DBInitializer : DropCreateDatabaseAlways<DefaultProductContext>
     {
-        protected override void Seed(ProductContext context)
+        protected override void Seed(DefaultProductContext context)
         {
             context.DefaultProducts.Add(new DefaultProduct() { Name = "Гречневая каша", Calories = 92, Fats = 5, Protein = 11, Carbs = 76, Fiber = 2.7, Iron = 0.8, Calcium = 7.0, VitA = 0, VitC = 0, VitB12 = 0, Folate = 14.0 });
             context.DefaultProducts.Add(new DefaultProduct() { Name = "Яблоко", Calories = 52, Fats = 1, Protein = 1, Carbs = 50, Fiber = 2.4, Iron = 0.1, Calcium = 6.0, VitA = 54, VitC = 4.6, VitB12 = 0, Folate = 3.0 });

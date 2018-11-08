@@ -27,14 +27,27 @@ namespace Lifestyle.Controllers
             int car = 0;
             var daybook = dbDaybook.Daybooks.Where(x => x.UserId == user.UserId);
             List<DefaultProduct> d_products = new List<DefaultProduct> { };
+            List<CustomProduct> c_products = new List<CustomProduct> { };
             foreach (var item in daybook)
             {
-                DefaultProduct defaultProduct = dbDefaultProduct.DefaultProducts.Find(item.ProductId);
-                c += defaultProduct.Calories * (item.Gram / 100);
-                f += defaultProduct.Fats;
-                p += defaultProduct.Protein;
-                car += defaultProduct.Carbs;
-                d_products.Add(defaultProduct);
+                if (item.Custom == false)
+                {
+                    DefaultProduct defaultProduct = dbDefaultProduct.DefaultProducts.Find(item.ProductId);
+                    c += defaultProduct.Calories * (item.Gram / 100);
+                    f += defaultProduct.Fats;
+                    p += defaultProduct.Protein;
+                    car += defaultProduct.Carbs;
+                    d_products.Add(defaultProduct);
+                }
+                else
+                {
+                    CustomProduct customProduct = dbCustomProduct.CustomProducts.Find(item.ProductId);
+                    c += customProduct.Calories * (item.Gram / 100);
+                    f += customProduct.Fats;
+                    p += customProduct.Protein;
+                    car += customProduct.Carbs;
+                    c_products.Add(customProduct);
+                }
             }
             ViewBag.c = c;
             ViewBag.f = f;
@@ -42,6 +55,7 @@ namespace Lifestyle.Controllers
             ViewBag.car = car;
             ViewBag.dp = d_products;
             ViewBag.Daybook = daybook;
+            ViewBag.cp = c_products;
             ViewBag.Calories = (int)((user.Weight * 10 + (user.Height * 6.25) -
             ((DateTime.UtcNow.Month < user.BirthDate.Month || (DateTime.UtcNow.Month == user.BirthDate.Month && DateTime.UtcNow.Day < user.BirthDate.Day)) ?
             (DateTime.UtcNow.Year - user.BirthDate.Year) : (DateTime.UtcNow.Year - user.BirthDate.Year) - 1) +

@@ -14,15 +14,49 @@
     <title>Домашняя страница</title>
 </head>
 
+<style>
+    a.rollover {
+        background: url(../img/gippocrat.jpg); /* Путь к файлу с исходным рисунком  */
+        display: block; /*  Рисунок как блочный элемент */
+        width: 196px; /* Ширина рисунка */
+        height: 183px; /*  Высота рисунка */
+        background-position: center center;
+        background-size: cover;
+        vertical-align:top;
+    }
+
+        a.rollover:hover {
+            background: url(../img/bondar.jpg); /* Путь к файлу с заменяемым рисунком  */
+            display: block; /*  Рисунок как блочный элемент */
+            width: 196px; /* Ширина рисунка */
+            height: 183px; /*  Высота рисунка */
+            background-position: center center;
+            background-size: cover;
+        }
+
+       /* a.rollover:active{
+
+        }*/
+</style>
 <body>  
     <div class="container" style="background-color:rgb(0, 0, 0, 0.5); border-radius:20px">
         <h1 class="h3 text-center" style="margin-top: 30px; margin-bottom: 30px;">Вас приветствует IFood</h1>
         <div class="lead text-center" style="margin-bottom: 16px;">
-            <h3>
-                «Ты есть то, что ты ешь» — о смысле этой крылатой фразы Гиппократа, как и о прямом влиянии
-                качества питания на здоровье не задумывался разве что совсем равнодушный к своему образу жизни человек.
-                Даже яростные поклонники фастфудов в глубине души осознают, что рацион неплохо бы поменять…
-            </h3>
+            <div class="row">
+                <div class="col-sm-2">
+                    <a href="https://www.youtube.com/channel/UCFABKGZ3rhCsTWKiTmu5VDg/videos" class="rollover"> </a>
+                </div>
+                <div class="col-sm-10">
+                    <h3>
+                        @*<img src="../img/gippocrat.jpg" alt="Философ" width="200" height="200" align="right">*@
+                      
+                        «Ты есть то, что ты ешь» — о смысле этой крылатой фразы Гиппократа, как и о прямом влиянии
+                        качества питания на здоровье не задумывался разве что совсем равнодушный к своему образу жизни человек.
+                        Даже яростные поклонники фастфудов в глубине души осознают, что рацион неплохо бы поменять…
+                    </h3>
+                </div>
+            </div>
+         
             <h1>Почему важно соблюдать правила здорового питания </h1>
             <p>Человеческий организм получает почти все необходимые вещества именно через пищу и воду.
             Состав продуктов питания и их свойства непосредственно влияют на здоровье, физическое развитие,

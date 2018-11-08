@@ -132,7 +132,7 @@ namespace Lifestyle.Controllers
         }
 
         [Authorize]
-        public ActionResult DelProduct(int Id)
+        public ActionResult DelProduct(int? Id)
         {
             DaybookProduct b = dbDaybook.Daybooks.Find(Id);
             if (b != null)

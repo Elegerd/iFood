@@ -247,6 +247,8 @@
 
             </div>*@
 
+            <a href="#product">Добавить продукт из стандартного набора</a>
+            <a href="#product_2">Добавить продукт из вашего набора</a>
 
             <div id="product">
                 <div id="okno">
@@ -255,7 +257,6 @@
                         <input type="hidden" name="custom" value="false" /><br />
                         <input type="number" name="gram" min="1" value="1" /><br />
                         <a href="#" class="close">Закрыть окно</a>
-                        <input type="hidden" name="custom" value="false" /><br />
                         <div class="col-sm-6" style="width:10%">
                             <div class="form-group">
                                 <input type="submit" value="Добавить" class="btn btn-default" />
@@ -270,8 +271,8 @@
                 <div id="okno">
                     <div class="row">
                         @Html.ListBoxFor(Model => Model.CustomProducts.Id, ViewBag.Product_2 as SelectList, new { htmlAttributes = new { @class = "multiple" } })
-                        <input type="hidden" name="custom" value="true" /><br />
-                        <input type="number" name="gram" min="1" value="1"/><br />
+                        <input type="number" name="gram" min="1" value="1" /><br />
+
                         <a href="#" class="close">Закрыть окно</a>
                         <div class="col-sm-6" style="width:10%">
                             <div class="form-group">
@@ -281,10 +282,6 @@
                     </div>
                 </div>
             </div>
-
-
-            <a href="#product">Добавить продукт из стандартного набора</a>
-            <a href="#product_2">Добавить продукт из вашего набора</a>
         }
     </div>
 </div>

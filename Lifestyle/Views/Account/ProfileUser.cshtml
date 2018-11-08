@@ -2,40 +2,42 @@
 @{
     Layout = "~/Views/Shared/Layout_2.cshtml";
 }
-<div class="container body-content">
+
+
+
+<div class="container-fluid">
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         
       
 
-        <div class="container">
-
-            <div class="container" style="background-color:rgb(0, 0, 0, 0.5); margin-top:30px ; border-radius:20px">
-                <div class="lead text-center" style="margin-bottom: 16px;">
-                    <p>
-                        Email:  @Html.DisplayFor(model => model.Email)
-                    </p>
-                    <p>
-                        Имя:  @Html.DisplayFor(model => model.Name)
-                    </p>
-                    <p>
-                        Дата рождения:  @Html.DisplayFor(model => model.BirthDate)
-                    </p>
-                    <p>
-                        Пол: @ViewData["Sex"]
-                    </p>
-                    <p>
-                        Рост:  @ViewData["Height"]
-                    </p>
-                    <p>
-                        Вес:  @ViewData["Weight"]
-                    </p>
+        <div class="container-fluid">
+            <div class="row">
+                <div class=" col-sm-3 col-xs-6 " style="background-color:rgb(0, 0, 0, 0.5); margin-top:30px ; border-radius:20px">
+                    <div class="lead text-center" style="margin-bottom: 16px;">
+                        <p>Email:  @Html.DisplayFor(model => model.Email) </p>
+                        <p>Имя:  @Html.DisplayFor(model => model.Name) </p>
+                        <p>Дата рождения:  @Html.DisplayFor(model => model.BirthDate) </p>
+                        <p>Пол: @ViewData["Sex"] </p>
+                        <p>Рост:  @ViewData["Height"] </p>
+                        <p> Вес:  @ViewData["Weight"] </p>
+                    </div>
                 </div>
-            </div>
+
+                <div class="col-sm-9 col-xs-6">
+
+                    
+
+
+                </div>
+            </div>            
         </div>
 
 
 
     }
 </div>  
+
+
+

@@ -172,9 +172,9 @@
         cursor: pointer;
     }
 
-    .close:hover {
-        background: #e6e6ff;
-    }
+        .close:hover {
+            background: #e6e6ff;
+        }
 </style>
 
 <div class="container center-block" style="background-color:rgb(0, 0, 0, 0.8); margin-top:30px ; border-radius:20px">
@@ -242,80 +242,74 @@
                 }
             </table>
 
+           
 
-            bool c = false;
-            <button type="button" name=@c value="false" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal_2">
+           
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="ADDDEFAULT()">
                 ADD DEFAULT
             </button>
 
-            <button type="button" name=@c value="true" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="ADDCUSTOM()">
                 ADD CUSTOM
             </button>
 
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
-            if (c == false)
-            {
-                <div class="modal fade" id="myModal_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true" style="color:red">&times;</span>
-                                </button>
-                                <h4 class="modal-title" id="myModalLabel" style="color:black">Добавление DefaultProduct</h4>
-                            </div>
-                            <div class="modal-body" style="color:black">
-                                @Html.ListBoxFor(Model => Model.DefaultProducts.Id, ViewBag.Product as SelectList, new { htmlAttributes = new { @class = "multiple" } })
-                                <input type="hidden" name="custom" value="false" /><br />
-                                <input type="number" name="gram" min="1" value="1" /><br />
-                            </div>
-                            <div class="modal-footer" style="color:black">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-                                <input type="submit" name="DefaultProductsAddButton" value="Добавить" class="btn btn-success" />
-                            </div>
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" style="color:red">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel" style="color:black">Добавление DefaultProduct</h4>
+                        </div>
+                        <div class="modal-body" style="color:black">
+
+                            @Html.ListBoxFor(Model => Model.DefaultProducts.Id, ViewBag.Product as SelectList, new { htmlAttributes = new { @class = "multiple" } })
+                            <input type="hidden" name="custom" value="false" /><br />
+                            <input type="number" name="gram" min="1" value="1" /><br />
+
+                            @Html.ListBoxFor(m => m.CustomProducts.Id, ViewBag.Product_2 as SelectList, new { htmlAttributes = new { @class = "multiple hiddencl" } })
+
+
+
+                        </div>
+
+                        <script>
+                           
+
+                            function ADDDEFAULT() {
+                                document.querySelectorAll("input[name=custom]")[0].value = false;
+                                document.querySelectorAll("#DefaultProducts_Id")[0].style.display = "initial";
+                                document.querySelectorAll("#CustomProducts_Id")[0].style.display = "none";
+
+                            }
+
+                            function ADDCUSTOM() {
+                                document.querySelectorAll("input[name=custom]")[0].value = true;
+                                document.querySelectorAll("#DefaultProducts_Id")[0].style.display = "none";
+                                document.querySelectorAll("#CustomProducts_Id")[0].style.display = "initial";
+                            }
+                        </script>
+
+
+
+                        <div class="modal-footer" style="color:black">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                            <input type="submit" name="DefaultProductsAddButton" value="Добавить" class="btn btn-success" />
                         </div>
                     </div>
                 </div>
-            }
-            else
-            {
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true" style="color:red">&times;</span>
-                                </button>
-                                <h4 class="modal-title" id="myModalLabel" style="color:black">Добавление CustomProduct</h4>
-                            </div>
-                            <div class="modal-body" style="color:black">
-                                @Html.ListBoxFor(m => m.CustomProducts.Id, ViewBag.Product_2 as SelectList, new { htmlAttributes = new { @class = "multiple" } })
-                                <input type="hidden" name="custom" value="true" /><br />
-                                <input type="number" name="gram" min="1" value="1" /><br />
-                            </div>
-                            <div class="modal-footer" style="color:black">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-                                <input type="submit" name="CustomProductsAddButton" value="Добавить" class="btn btn-success" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
+            </div>
         }
-        </div>
+    </div>
 </div>
 
 <div class="container center-block" style="background-color:rgb(255, 255, 255, 0.8); margin-top:30px ; border-radius:20px">
-
     <div class="col-sm-6">
         <div id="donutchart"></div>
     </div>
     <div class="col-sm-6">
         <div id="piechart_3d"></div>
     </div>
-
 </div>
-
-
-
-

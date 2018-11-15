@@ -214,7 +214,7 @@
                                     <td width="50">@((double)item.Fats * g.Gram / 100)</td>
                                     <td width="50">@((double)item.Protein * g.Gram / 100)</td>
                                     <td width="50">@((double)item.Carbs * g.Gram / 100)</td>
-                                    <td> @Html.ActionLink("Удалить", "DelProduct", new { id = item.Id }) </td>
+                                    <td> <a href="#" onclick="delproduct('DelProduct/@g.Id', 'POST');"> Удалить </a> </td>
                                 </tr>
                                 break;
                             }
@@ -233,7 +233,7 @@
                                     <td width="50">@((double)item.Fats * g.Gram / 100)</td>
                                     <td width="50">@((double)item.Protein * g.Gram / 100)</td>
                                     <td width="50">@((double)item.Carbs * g.Gram / 100)</td>
-                                    <td> @Html.ActionLink("Удалить", "DelProduct", new { id = item.Id }) </td>
+                                    <td> <a href="#" onclick="delproduct('DelProduct/@g.Id');"> Удалить </a> </td>
                                 </tr>
                                 break;
                             }
@@ -241,6 +241,16 @@
                     }
                 }
             </table>
+
+            <script>
+                function delproduct(path) {
+                    var form = document.createElement("form");
+                    form.method = "post";
+                    form.action = path;
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+            </script>
 
            
 
@@ -276,8 +286,6 @@
                         </div>
 
                         <script>
-                           
-
                             function ADDDEFAULT() {
                                 document.querySelectorAll("input[name=custom]")[0].value = false;
                                 document.querySelectorAll("#DefaultProducts_Id")[0].style.display = "initial";

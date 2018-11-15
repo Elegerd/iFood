@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Lifestyle.Controllers
@@ -108,7 +109,7 @@ namespace Lifestyle.Controllers
                 if (item.Custom == false)
                 {
                     DefaultProduct defaultProduct = dbDefaultProduct.DefaultProducts.Find(item.ProductId);
-                    c += defaultProduct.Calories * (item.Gram / 100);
+                    c += (int)(defaultProduct.Calories * (double)(item.Gram / 100));
                     f += defaultProduct.Fats;
                     p += defaultProduct.Protein;
                     car += defaultProduct.Carbs;
@@ -117,7 +118,7 @@ namespace Lifestyle.Controllers
                 else
                 {
                     CustomProduct customProduct = dbCustomProduct.CustomProducts.Find(item.ProductId);
-                    c += customProduct.Calories * (item.Gram / 100);
+                    c += (int)(customProduct.Calories * (double)(item.Gram / 100));
                     f += customProduct.Fats;
                     p += customProduct.Protein;
                     car += customProduct.Carbs;
@@ -146,16 +147,22 @@ namespace Lifestyle.Controllers
             return View();
         }
 
+        [HttpPost]
         [Authorize]
-        public ActionResult DelProduct(int? Id)
+        public ActionResult DelProduct(int? id)
         {
-            DaybookProduct b = dbDaybook.Daybooks.Find(Id);
-            if (b != null)
+            if (id == null)
             {
-                dbDaybook.Daybooks.Remove(b);
-                db.SaveChanges();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return RedirectToAction("Index", "Daybook");
+            DaybookProduct b = dbDaybook.Daybooks.Find(id);
+            if (b == null)
+            {
+                return HttpNotFound();
+            }
+            dbDaybook.Daybooks.Remove(b);
+            dbDaybook.SaveChanges();
+            return Redirect("~/Daybook/Index");
         }
     }
 }

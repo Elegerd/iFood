@@ -51,6 +51,44 @@
             chart.draw(data, options);
         }
     </script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script> 
+        const resolt = () => {        
+            var f = document.getElementById("getgram").value
+            $("table").children().append('<tr><td> ' + f + ' </td><td>'+ + ' </td><td>Дратути2 </td><td>Дратути3 </td><td>Дратути4 </td><td>Дратути5 </td></tr>');
+          
+        }
+        //$(document).ready(function () {
+        //    $("#her1").click(function () {
+        //        var 
+        //        $("table").children().append('<tr><td>Дратути </td><td>Дратути1 </td><td>Дратути2 </td><td>Дратути3 </td><td>Дратути4 </td><td>Дратути5 </td></tr>');
+        //    });
+        //});
+
+        //$(document).ready(function () {
+        //    $("#div1").click(function () {
+        //        alert("sdfgjdskjvc"); // $("#div1").remove();
+        //    });
+        //});
+    </script>
+
+    <script>
+        function getC(selectObject) {
+            var value1 = selectObject.value;
+
+
+            $.ajax({
+                url: "/demo?id=" + value1,
+                success: function (response) {
+                    response["baz"]
+                    
+                }
+            })
+
+         
+        }
+    </script>
 </head>
 
 
@@ -214,7 +252,7 @@
                                     <td width="50">@((double)item.Fats * g.Gram / 100)</td>
                                     <td width="50">@((double)item.Protein * g.Gram / 100)</td>
                                     <td width="50">@((double)item.Carbs * g.Gram / 100)</td>
-                                    <td> <a href="#" onclick="delproduct('DelProduct/@g.Id', 'POST');"> Удалить </a> </td>
+                                    <td> <a href="#"  onclick="delproduct('DelProduct/@g.Id', 'POST');"> Удалить </a> </td>
                                 </tr>
                                 break;
                             }
@@ -233,7 +271,7 @@
                                     <td width="50">@((double)item.Fats * g.Gram / 100)</td>
                                     <td width="50">@((double)item.Protein * g.Gram / 100)</td>
                                     <td width="50">@((double)item.Carbs * g.Gram / 100)</td>
-                                    <td> <a href="#" onclick="delproduct('DelProduct/@g.Id');"> Удалить </a> </td>
+                                    <td> <a href="#" id="her1" onclick="delproduct('DelProduct/@g.Id');"> Удалить </a> </td>
                                 </tr>
                                 break;
                             }
@@ -251,11 +289,12 @@
                     form.submit();
                 }
             </script>
+         
 
-           
 
-           
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="ADDDEFAULT()">
+
+
+            <button type="button"  class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="ADDDEFAULT()">
                 ADD DEFAULT
             </button>
 
@@ -275,11 +314,27 @@
                         </div>
                         <div class="modal-body" style="color:black">
 
-                            @Html.ListBoxFor(Model => Model.DefaultProducts.Id, ViewBag.Product as SelectList, new { htmlAttributes = new { @class = "multiple" } })
+                            @*/* <select data-val="true" data-val-number="Значением поля Id должно быть число." data-val-required="Требуется поле Id." htmlattributes="{ class = multiple }" id="DefaultProducts_Id" multiple="multiple" name="DefaultProducts.Id" style="display: initial;">
+                            *@
+
+                            <select data-val="true"  onchange="getC(this)" data-val-number="Значением поля Id должно быть число." data-val-required="Требуется поле Id." htmlattributes="{ class = multiple }" id="DefaultProducts_Id" multiple="multiple" name="DefaultProducts.Id" style="display: initial;">
+                                <option value="1" id="tyu">Гречневая каша</option>
+                                <option value="2">Яблоко</option>
+                                <option selected="selected" value="3">Банан</option>
+                                <option value="4">Морковь</option>
+                                <option value="5">Молоко</option>
+                            </select>
+
+
+
+                            @*@Html.ListBoxFor(m => m.DefaultProducts.Id, ViewBag.Product as SelectList, new { htmlAttributes = new { @class = "multiple" } })*@
                             <input type="hidden" name="custom" value="false" /><br />
-                            <input type="number" name="gram" min="1" value="1" /><br />
+                            <input type="number" name="gram" min="1" value="1" id="getgram" /><br />
 
                             @Html.ListBoxFor(m => m.CustomProducts.Id, ViewBag.Product_2 as SelectList, new { htmlAttributes = new { @class = "multiple hiddencl" } })
+
+
+
 
 
 
@@ -304,7 +359,7 @@
 
                         <div class="modal-footer" style="color:black">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-                            <input type="submit" name="DefaultProductsAddButton" value="Добавить" class="btn btn-success" />
+                            <button type="button" name="DefaultProductsAddButton" class="btn btn-success" onclick="resolt()">Добавить</button>
                         </div>
                     </div>
                 </div>

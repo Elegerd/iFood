@@ -1,13 +1,13 @@
 ﻿@using Lifestyle.Models
 @model Lifestyle.Models.ProductModel
 
-
 @{
-    ViewBag.Title = "Daybook";
     Layout = "~/Views/Shared/Layout_2.cshtml";
 }
 
 <head>
+    <title>Диетический дневник</title>
+    <link href="@Url.Content("~/Content/Style/DaybookIndex.css")" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load("current", { packages: ["corechart"] });
@@ -29,7 +29,6 @@
             chart.draw(data, options);
         }
     </script>
-
     <script type="text/javascript">
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
@@ -53,166 +52,7 @@
     </script>
     <script src="/js/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script> 
-        const resolt = () => {        
-            var f = document.getElementById("getgram").value
-            $("table").children().append('<tr><td> ' + f + ' </td><td>'+ + ' </td><td>Дратути2 </td><td>Дратути3 </td><td>Дратути4 </td><td>Дратути5 </td></tr>');
-          
-        }
-        //$(document).ready(function () {
-        //    $("#her1").click(function () {
-        //        var 
-        //        $("table").children().append('<tr><td>Дратути </td><td>Дратути1 </td><td>Дратути2 </td><td>Дратути3 </td><td>Дратути4 </td><td>Дратути5 </td></tr>');
-        //    });
-        //});
-
-        //$(document).ready(function () {
-        //    $("#div1").click(function () {
-        //        alert("sdfgjdskjvc"); // $("#div1").remove();
-        //    });
-        //});
-    </script>
-
-    <script>
-        function getC(selectObject) {
-            var value1 = selectObject.value;
-            //alert(value1);
-            $.ajax({
-                url: "/demo?id=" + value1,
-                success: function (response) {
-                    response["baz"]
-                   // alert(response["baz"]);
-                }
-            })
-
-         
-        }
-    </script>
 </head>
-
-
-<style>
-
-    text {
-        fill: black;
-        /*stroke:black;*/
-    }
-    /*g {
-        color: black;
-    }*/
-
-    svg {
-        width: auto;
-    }
-
-    rect {
-        fill: transparent;
-    }
-
-    path {
-        /*stroke: black;*/
-    }
-
-    .mainselection {
-        overflow: hidden;
-        width: 350px;
-        margin-left: 35px;
-        background: white;
-        color: black;
-        text-align: center
-    }
-
-    select {
-        border: 0;
-        background: white;
-        height: 32px;
-        border: 1px solid black;
-        width: 350px;
-        -webkit-appearance: none;
-    }
-
-    caption, th {
-        color: #369;
-    }
-
-    caption {
-        margin-bottom: 5px;
-        text-align: left;
-    }
-
-    .simple-table {
-        margin: 17px auto;
-        border-collapse: collapse;
-    }
-
-        .simple-table td,
-        .simple-table th {
-            padding: 8px;
-            border: 1px solid #000;
-        }
-
-    #product {
-        background: rgba(102, 102, 102, 0.5);
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: none;
-    }
-
-    #product_2 {
-        background: rgba(102, 102, 102, 0.5);
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: none;
-    }
-
-    #okno {
-        z-index: 100;
-        width: 800px;
-        height: 500px;
-        text-align: center;
-        padding: 15px;
-        border: 3px solid black;
-        border-radius: 10px;
-        color: #0000cc;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        margin: auto;
-        background: white;
-    }
-
-    #product:target {
-        display: block;
-    }
-
-    #product_2:target {
-        display: block;
-    }
-
-    .close {
-        display: inline-block;
-        border: 1px solid #0000cc;
-        color: #0000cc;
-        padding: 0 12px;
-        margin: 10px;
-        text-decoration: none;
-        background: #f2f2f2;
-        font-size: 14pt;
-        cursor: pointer;
-    }
-
-        .close:hover {
-            background: #e6e6ff;
-        }
-</style>
 
 <div class="container center-block" style="background-color:rgb(0, 0, 0, 0.8); margin-top:30px ; border-radius:20px">
     <div class="lead text-center" style="margin-bottom: 16px;">
@@ -227,7 +67,7 @@
             @Html.AntiForgeryToken()
             <p>Необходимые калории: @ViewBag.Calories</p>
 
-            <table class="simple-table ">
+            <table class="simple-table" id="productTable">
                 <tr>
                     <td>Название</td>
                     <td>Граммы</td>
@@ -279,20 +119,6 @@
                 }
             </table>
 
-            <script>
-                function delproduct(path) {
-                    var form = document.createElement("form");
-                    form.method = "post";
-                    form.action = path;
-                    document.body.appendChild(form);
-                    form.submit();
-                }
-            </script>
-         
-
-
-
-
             <button type="button"  class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="ADDDEFAULT()">
                 ADD DEFAULT
             </button>
@@ -313,30 +139,19 @@
                         </div>
                         <div class="modal-body" style="color:black">
 
-                            @*/* <select data-val="true" data-val-number="Значением поля Id должно быть число." data-val-required="Требуется поле Id." htmlattributes="{ class = multiple }" id="DefaultProducts_Id" multiple="multiple" name="DefaultProducts.Id" style="display: initial;">
-                            *@
-
-                            <select data-val="true" onchange="getC(this)" data-val-number="Значением поля Id должно быть число." data-val-required="Требуется поле Id." htmlattributes="{ class = multiple }" id="DefaultProducts_Id" multiple="multiple" name="DefaultProducts.Id" style="display: initial;">
+                            <select data-val="true" data-val-number="Значением поля Id должно быть число." data-val-required="Требуется поле Id." htmlattributes="{ class = multiple }" id="DefaultProducts_Id" multiple="multiple" name="DefaultProducts.Id" style="display: initial;">
                                 <option value="1">Гречневая каша</option>
                                 <option value="2">Яблоко</option>
-                                @*<option selected="selected" value="3">Банан</option>*@
                                 <option value="3">Банан</option>
                                 <option value="4">Морковь</option>
                                 <option value="5">Молоко</option>
                             </select>
-
-
 
                             @*@Html.ListBoxFor(m => m.DefaultProducts.Id, ViewBag.Product as SelectList, new { htmlAttributes = new { @class = "multiple" } })*@
                             <input type="hidden" name="custom" value="false" /><br />
                             <input type="number" name="gram" min="1" value="1" id="getgram" /><br />
 
                             @Html.ListBoxFor(m => m.CustomProducts.Id, ViewBag.Product_2 as SelectList, new { htmlAttributes = new { @class = "multiple hiddencl" } })
-
-
-
-
-
 
                         </div>
 
@@ -353,13 +168,35 @@
                                 document.querySelectorAll("#DefaultProducts_Id")[0].style.display = "none";
                                 document.querySelectorAll("#CustomProducts_Id")[0].style.display = "initial";
                             }
+
+                            function delproduct(path) {
+                                var form = document.createElement("form");
+                                form.method = "post";
+                                form.action = path;
+                                document.body.appendChild(form);
+                                form.submit();
+                            }
+
+                            function getC() {
+                                var selectValue = document.getElementById("DefaultProducts_Id").value
+                                var gram = document.getElementById("getgram").value;
+                                    $.ajax({
+                                        url: "/demo?id=" + selectValue,
+                                        success: function (response) {
+                                            $('#productTable').append('<tr><td>' +
+                                                response["bazName"] + '</td><td>' + gram +
+                                                '</td><td>' + response["bazCalories"] +
+                                                '</td><td>' + response["bazFats"] + '</td><td>'
+                                                + response["bazProtein"] + '</td><td>' + response["bazCarbs"]
+                                                + "</td><td> <a href='#' id='her1' onclick='delproduct('DelProduct/testId')'> Удалить </a></td></tr>");
+                                        }
+                                    })
+                            }
                         </script>
-
-
 
                         <div class="modal-footer" style="color:black">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-                            <button type="button" name="DefaultProductsAddButton" class="btn btn-success" onclick="resolt()">Добавить</button>
+                            <button type="button" name="DefaultProductsAddButton" class="btn btn-success" onclick="getC()">Добавить</button>
                         </div>
                     </div>
                 </div>

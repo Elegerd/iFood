@@ -1,0 +1,18 @@
+﻿a.rollover {
+    background: url(../img/gippocrat.jpg); /* Путь к файлу с исходным рисунком  */
+    display: block; /*  Рисунок как блочный элемент */
+    width: 196px; /* Ширина рисунка */
+    height: 183px; /*  Высота рисунка */
+    background-position: center center;
+    background-size: cover;
+    vertical-align: top;
+}
+
+a.rollover:hover {
+    background: url(../img/bondar.jpg); /* Путь к файлу с заменяемым рисунком  */
+    display: block; /*  Рисунок как блочный элемент */
+    width: 196px; /* Ширина рисунка */
+    height: 183px; /*  Высота рисунка */
+    background-position: center center;
+    background-size: cover;
+}

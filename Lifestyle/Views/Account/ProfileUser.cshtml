@@ -3,14 +3,14 @@
     Layout = "~/Views/Shared/Layout_2.cshtml";
 }
 
-
+<head>
+    <title>Профиль пользователя</title>
+</head>
 
 <div class="container-fluid">
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        
-      
 
         <div class="container-fluid">
             <div class="row">
@@ -19,23 +19,17 @@
                         <p>Email:  @Html.DisplayFor(model => model.Email) </p>
                         <p>Имя:  @Html.DisplayFor(model => model.Name) </p>
                         <p>Дата рождения:  @Html.DisplayFor(model => model.BirthDate) </p>
-                        <p>Пол: @ViewData["Sex"] </p>
+                        <p>Пол:  @ViewData["Sex"] </p>
                         <p>Рост:  @ViewData["Height"] </p>
-                        <p> Вес:  @ViewData["Weight"] </p>
+                        <p>Вес:  @ViewData["Weight"] </p>
                     </div>
                 </div>
 
                 <div class="col-sm-9 col-xs-6">
 
-                    
-
-
                 </div>
             </div>            
         </div>
-
-
-
     }
 </div>  
 

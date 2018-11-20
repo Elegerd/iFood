@@ -29,11 +29,12 @@ namespace Lifestyle.Controllers
        
         public ActionResult Demo()
         {
-            string par1 = this.Request.QueryString["id"];
+            string selectId = Request.QueryString["id"];
             DefaultProductContext dbDefaultProduct = new DefaultProductContext();
-            var pr = dbDefaultProduct.DefaultProducts.Find(Convert.ToInt32(par1));
-            return Json(new {baz1= pr.Name}, JsonRequestBehavior.AllowGet);
+            var defaultProduct = dbDefaultProduct.DefaultProducts.Find(Convert.ToInt32(selectId));
+            return Json(new { bazName = defaultProduct.Name, bazCalories = defaultProduct.Calories,
+                bazFats = defaultProduct.Fats, bazProtein = defaultProduct.Protein,
+                bazCarbs = defaultProduct.Carbs }, JsonRequestBehavior.AllowGet);
             }
-
     }
 }

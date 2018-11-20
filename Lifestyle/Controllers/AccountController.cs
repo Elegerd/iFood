@@ -222,6 +222,5 @@ namespace Lifestyle.Controllers
             }
             return View(customProduct);
         }
-
     }
 }

@@ -1,26 +1,25 @@
 ﻿@model Lifestyle.Models.User
 @{
-    ViewBag.Title = "Редактирование пользователя";
     Layout = "~/Views/Shared/Layout_2.cshtml";
 }
+
+<head>
+    <title>Редактирование профиля</title>
+</head>
+
 <div class="container body-content">
     <div class="semi-container center-block">
-        <h2 class="text-center">Редактирование пользователя</h2>
+        <h2 class="text-center">Редактирование профиля</h2>
 
         <div class="container-fluid" style="background-color:rgb(0, 0, 0, 0.8)">
             <form method="post" action="">
-
                 @Html.AntiForgeryToken()
                 <div class="form-group">
                     @Html.HiddenFor(x => x.UserId, new { @readonly = "readonly", @class = "form-control" })
                 </div>
                 <div class="form-horizontal">
                     <div class="row-fluid">
-                        @*<div class="col-xs-12">*@
                         <div class="col-sm-6">
-
-
-
 
                             <div class="form-group">
                                 <label>Имя</label>
@@ -103,14 +102,7 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-                        @*</div>*@
-
                     </div>
-
-
 
                     <div class="row-fluid">
                         <div class="col-sm-6 ">
@@ -124,20 +116,11 @@
 
                         </div>
                     </div>
-
-
-
                 </div>
             </form>
-
-
         </div>
-
-
     </div>
-
 </div>
 
 
 
-    

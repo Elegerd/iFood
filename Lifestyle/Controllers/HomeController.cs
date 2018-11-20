@@ -30,9 +30,9 @@ namespace Lifestyle.Controllers
         public ActionResult Demo()
         {
             string par1 = this.Request.QueryString["id"];
-             DefaultProductContext dbDefaultProduct = new DefaultProductContext();
+            DefaultProductContext dbDefaultProduct = new DefaultProductContext();
             var pr = dbDefaultProduct.DefaultProducts.Find(Convert.ToInt32(par1));
-            return Json(new { foo="bar", baz= pr.Calories}, JsonRequestBehavior.AllowGet);
+            return Json(new {baz1= pr.Name}, JsonRequestBehavior.AllowGet);
             }
 
     }

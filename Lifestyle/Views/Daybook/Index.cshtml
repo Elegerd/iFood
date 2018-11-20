@@ -74,19 +74,15 @@
     </script>
 
     <script>
-        function getC(selectObject) {
-            var value1 = selectObject.value;
-
-
+        function getC() {
+            var valueId = document.getElementById("selectList").value;
             $.ajax({
-                url: "/demo?id=" + value1,
+                url: "/demo?id=" + valueId,
                 success: function (response) {
                     response["baz"]
                     
                 }
             })
-
-         
         }
     </script>
 </head>
@@ -291,9 +287,6 @@
             </script>
          
 
-
-
-
             <button type="button"  class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="ADDDEFAULT()">
                 ADD DEFAULT
             </button>
@@ -317,10 +310,10 @@
                             @*/* <select data-val="true" data-val-number="Значением поля Id должно быть число." data-val-required="Требуется поле Id." htmlattributes="{ class = multiple }" id="DefaultProducts_Id" multiple="multiple" name="DefaultProducts.Id" style="display: initial;">
                             *@
 
-                            <select data-val="true"  onchange="getC(this)" data-val-number="Значением поля Id должно быть число." data-val-required="Требуется поле Id." htmlattributes="{ class = multiple }" id="DefaultProducts_Id" multiple="multiple" name="DefaultProducts.Id" style="display: initial;">
-                                <option value="1" id="tyu">Гречневая каша</option>
+                            <select data-val="true" id="selectList" data-val-number="Значением поля Id должно быть число." data-val-required="Требуется поле Id." htmlattributes="{ class = multiple }" id="DefaultProducts_Id" multiple="multiple" name="DefaultProducts.Id" style="display: initial;">
+                                <option value="1">Гречневая каша</option>
                                 <option value="2">Яблоко</option>
-                                <option selected="selected" value="3">Банан</option>
+                                <option value="3">Банан</option>
                                 <option value="4">Морковь</option>
                                 <option value="5">Молоко</option>
                             </select>

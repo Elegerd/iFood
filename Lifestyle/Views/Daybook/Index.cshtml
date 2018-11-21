@@ -135,24 +135,37 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true" style="color:red">&times;</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel" style="color:black">Добавление DefaultProduct</h4>
+                            <h4 class="modal-title" id="myModalLabel" style="color:black">Добавление продукта</h4>
                         </div>
                         <div class="modal-body" style="color:black">
 
                             <select data-val="true" data-val-number="Значением поля Id должно быть число." data-val-required="Требуется поле Id." htmlattributes="{ class = multiple }" id="DefaultProducts_Id" multiple="multiple" name="DefaultProducts.Id" style="display: initial;">
-                                <option value="1">Гречневая каша</option>
-                                <option value="2">Яблоко</option>
-                                <option value="3">Банан</option>
-                                <option value="4">Морковь</option>
-                                <option value="5">Молоко</option>
+                                @foreach (var defproduct in ViewBag.Product)
+                                {
+                                    <option value="@defproduct.Id">@defproduct.Name</option>
+                                }
+                                @*<option value="1">Гречневая каша</option>
+            <option value="2">Яблоко</option>
+            <option value="3">Банан</option>
+            <option value="4">Морковь</option>
+            <option value="5">Молоко</option>*@
                             </select>
 
                             @*@Html.ListBoxFor(m => m.DefaultProducts.Id, ViewBag.Product as SelectList, new { htmlAttributes = new { @class = "multiple" } })*@
+
+                            @*@Html.ListBoxFor(m => m.CustomProducts.Id, ViewBag.Product_2 as SelectList, new { htmlAttributes = new { @class = "multiple hiddencl" } })*@
+
+
+
+
                             <input type="hidden" name="custom" value="false" /><br />
                             <input type="number" name="gram" min="1" value="1" id="getgram" /><br />
-
-                            @Html.ListBoxFor(m => m.CustomProducts.Id, ViewBag.Product_2 as SelectList, new { htmlAttributes = new { @class = "multiple hiddencl" } })
-
+                            <select data-val="true" data-val-number="Значением поля Id должно быть число." data-val-required="Требуется поле Id." htmlAttributes="{ class = multiple hiddencl }" id="CustomProducts_Id" multiple="multiple" name="CustomProducts.Id">
+                                @foreach (var cusproduct in ViewBag.Product_2)
+                                {
+                                    <option value="@cusproduct.Id">@cusproduct.Name</option>
+                                }
+                            </select>
                         </div>
 
                         <script>
@@ -160,7 +173,6 @@
                                 document.querySelectorAll("input[name=custom]")[0].value = false;
                                 document.querySelectorAll("#DefaultProducts_Id")[0].style.display = "initial";
                                 document.querySelectorAll("#CustomProducts_Id")[0].style.display = "none";
-
                             }
 
                             function ADDCUSTOM() {
@@ -178,7 +190,10 @@
                             }
 
                             function getC() {
-                                var selectValue = document.getElementById("DefaultProducts_Id").value
+                                if (document.querySelectorAll("input[name=custom]")[0].value)
+                                    var selectValue = document.getElementById("CustomProducts_Id").value
+                                else
+                                    var selectValue = document.getElementById("DefaultProducts_Id").value
                                 var gram = document.getElementById("getgram").value;
                                     $.ajax({
                                         url: "/demo?id=" + selectValue,

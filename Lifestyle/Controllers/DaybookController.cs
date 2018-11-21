@@ -62,8 +62,10 @@ namespace Lifestyle.Controllers
             (DateTime.UtcNow.Year - user.BirthDate.Year) : (DateTime.UtcNow.Year - user.BirthDate.Year) - 1) +
             (user.Sex == true ? 5 : -161)) * 1.2 - c);
 
-            ViewBag.Product = new SelectList(dbDefaultProduct.DefaultProducts, "Id", "Name");
-            ViewBag.Product_2 = new SelectList(dbCustomProduct.CustomProducts, "Id", "Name");
+            ViewBag.Product = dbDefaultProduct.DefaultProducts.ToList();
+            // ViewBag.Product = new SelectList(dbDefaultProduct.DefaultProducts, "Id", "Name");
+            //ViewBag.Product_2 = new SelectList(dbCustomProduct.CustomProducts, "Id", "Name");
+            ViewBag.Product_2 = dbCustomProduct.CustomProducts.Where(x => x.UserId == user.UserId);
 
             if (user.Sex == null || user.Height == null || user.Weight == null)
             {

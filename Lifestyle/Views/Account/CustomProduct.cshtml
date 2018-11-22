@@ -1,118 +1,137 @@
 ﻿@model Lifestyle.Models.CustomProduct
+@{
+    Layout = "~/Views/Shared/Layout_2.cshtml";
+}
 
 <head>
     <title>Пользовательский продукт</title>
 </head>
 
-<h2>Добавление пользовательского продукта</h2>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="container body-content">
+    <div class="semi-container center-block">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Calories, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Calories, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Calories, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <h2 class="text-center">Добавление пользовательского продукта</h2>
+        <div class="container-fluid" style="background-color:rgb(0, 0, 0, 0.8)">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Fats, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Fats, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fats, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Protein, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Protein, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Protein, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-horizontal">
+                    <div class="row-fluid">
+                        <div class="col-sm-6">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <label>Наименование</label>
+                                @*<div class="col-sm-10">*@
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                @*</div>*@
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Carbs, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Carbs, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Carbs, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            <div class="form-group">
+                                <label>Калории</label>
+                                @*<div class="col-md-10">*@
+                                @Html.EditorFor(model => model.Calories, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Calories, "", new { @class = "text-danger" })
+                                @*</div>*@
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Fiber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Fiber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fiber, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            <div class="form-group">
+                                <label>Fats</label>
+                                @*<div class="col-md-10">*@
+                                @Html.EditorFor(model => model.Fats, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Fats, "", new { @class = "text-danger" })
+                                @*</div>*@
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Iron, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Iron, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Iron, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            <div class="form-group">
+                               <label>Protein</label>
+                                @*<div class="col-md-10">*@
+                                @Html.EditorFor(model => model.Protein, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Protein, "", new { @class = "text-danger" })
+                                @*</div>*@
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Calcium, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Calcium, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Calcium, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            <div class="form-group">
+                                <label>Carbs</label>
+                                @*<div class="col-md-10">*@
+                                @Html.EditorFor(model => model.Carbs, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Carbs, "", new { @class = "text-danger" })
+                                @*</div>*@
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.VitA, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.VitA, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.VitA, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            <div class="form-group">
+                               <label>Fiber</label>
+                                @*<div class="col-md-10">*@
+                                @Html.EditorFor(model => model.Fiber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Fiber, "", new { @class = "text-danger" })
+                                @*</div>*@
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Iron</label>
+                                @*<div class="col-md-10">*@
+                                @Html.EditorFor(model => model.Iron, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Iron, "", new { @class = "text-danger" })
+                                @*</div>*@
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.VitC, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.VitC, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.VitC, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            <div class="form-group">
+                              <label>Calcium</label>
+                                @*<div class="col-md-10">*@
+                                @Html.EditorFor(model => model.Calcium, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Calcium, "", new { @class = "text-danger" })
+                                @*</div>*@
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.VitB12, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.VitB12, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.VitB12, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            <div class="form-group">
+                               <label>VitA</label>
+                                @*<div class="col-md-10">*@
+                                @Html.EditorFor(model => model.VitA, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.VitA, "", new { @class = "text-danger" })
+                                @*</div>*@
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Folate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Folate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Folate, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            <div class="form-group">
+                               <label>VitC</label>
+                                @*<div class="col-md-10">*@
+                                @Html.EditorFor(model => model.VitC, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.VitC, "", new { @class = "text-danger" })
+                                @*</div>*@
+                            </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Добавить" class="btn btn-default" />
-            </div>
+                            <div class="form-group">
+                               <label>VitB12</label>
+                                @*<div class="col-md-10">*@
+                                @Html.EditorFor(model => model.VitB12, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.VitB12, "", new { @class = "text-danger" })
+                                @*</div>*@
+                            </div>
+
+                            <div class="form-group">
+                               <label>Folate</label>
+                                @*<div class="col-md-10">*@
+                                @Html.EditorFor(model => model.Folate, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Folate, "", new { @class = "text-danger" })
+                                @*</div>*@
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-sm-8 ">
+
+                            </div>
+                            <div class="col-sm-4 ">
+                                @*<div class="col-md-offset-2 col-md-10">*@
+                                    <input type="submit" class="btn btn-primary" value="Добавить"  />
+                                @*</div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-}
+</div>

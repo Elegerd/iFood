@@ -139,28 +139,20 @@
                         </div>
                         <div class="modal-body" style="color:black">
 
-                            <select data-val="true" data-val-number="Значением поля Id должно быть число." data-val-required="Требуется поле Id." htmlattributes="{ class = multiple }" id="DefaultProducts_Id" multiple="multiple" name="DefaultProducts.Id" style="display: initial;">
+                            <select data-val="true" id="DefaultProducts_Id" multiple="multiple">
                                 @foreach (var defproduct in ViewBag.Product)
                                 {
                                     <option value="@defproduct.Id">@defproduct.Name</option>
                                 }
-                                @*<option value="1">Гречневая каша</option>
-            <option value="2">Яблоко</option>
-            <option value="3">Банан</option>
-            <option value="4">Морковь</option>
-            <option value="5">Молоко</option>*@
                             </select>
 
                             @*@Html.ListBoxFor(m => m.DefaultProducts.Id, ViewBag.Product as SelectList, new { htmlAttributes = new { @class = "multiple" } })*@
 
                             @*@Html.ListBoxFor(m => m.CustomProducts.Id, ViewBag.Product_2 as SelectList, new { htmlAttributes = new { @class = "multiple hiddencl" } })*@
 
-
-
-
                             <input type="hidden" name="custom" value="false" /><br />
                             <input type="number" name="gram" min="1" value="1" id="getgram" /><br />
-                            <select data-val="true" data-val-number="Значением поля Id должно быть число." data-val-required="Требуется поле Id." htmlAttributes="{ class = multiple hiddencl }" id="CustomProducts_Id" multiple="multiple" name="CustomProducts.Id">
+                            <select data-val="true" id="CustomProducts_Id" multiple="multiple">
                                 @foreach (var cusproduct in ViewBag.Product_2)
                                 {
                                     <option value="@cusproduct.Id">@cusproduct.Name</option>
@@ -189,14 +181,18 @@
                                 form.submit();
                             }
 
-                            function getC() {
-                                if (document.querySelectorAll("input[name=custom]")[0].value)
-                                    var selectValue = document.getElementById("CustomProducts_Id").value
-                                else
-                                    var selectValue = document.getElementById("DefaultProducts_Id").value
+                            function AddProduct() {
+                                if (document.querySelectorAll("input[name=custom]")[0].value == 'true') {
+                                    var selectValue = document.getElementById("CustomProducts_Id").value;
+                                    var product = document.querySelectorAll("input[name=custom]")[0].value;
+                                }
+                                else {
+                                    var selectValue = document.getElementById("DefaultProducts_Id").value;
+                                    var product = document.querySelectorAll("input[name=custom]")[0].value;
+                                }
                                 var gram = document.getElementById("getgram").value;
                                     $.ajax({
-                                        url: "/demo?id=" + selectValue,
+                                        url: "/AddProduct?product=" + product + "&id=" + selectValue,
                                         success: function (response) {
                                             $('#productTable').append('<tr><td>' +
                                                 response["bazName"] + '</td><td>' + gram +
@@ -211,7 +207,7 @@
 
                         <div class="modal-footer" style="color:black">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-                            <button type="button" name="DefaultProductsAddButton" class="btn btn-success" onclick="getC()">Добавить</button>
+                            <button type="button" name="ProductsAddButton" class="btn btn-success" onclick="AddProduct()">Добавить</button>
                         </div>
                     </div>
                 </div>

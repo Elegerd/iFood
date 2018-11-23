@@ -11,8 +11,6 @@ namespace Lifestyle.Controllers
 {
     public class HomeController : Controller
     {
-        
-
         public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated == false)
@@ -26,15 +24,37 @@ namespace Lifestyle.Controllers
             return View();
         }
 
-       
-        public ActionResult Demo()
+
+        public ActionResult AddProduct()
         {
             string selectId = Request.QueryString["id"];
-            DefaultProductContext dbDefaultProduct = new DefaultProductContext();
-            var defaultProduct = dbDefaultProduct.DefaultProducts.Find(Convert.ToInt32(selectId));
-            return Json(new { bazName = defaultProduct.Name, bazCalories = defaultProduct.Calories,
-                bazFats = defaultProduct.Fats, bazProtein = defaultProduct.Protein,
-                bazCarbs = defaultProduct.Carbs }, JsonRequestBehavior.AllowGet);
+            string product = Request.QueryString["product"];
+            if (Convert.ToBoolean(product))
+            {
+                CustomProductContext dbCustomProduct = new CustomProductContext();
+                var customProduct = dbCustomProduct.CustomProducts.Find(Convert.ToInt32(selectId));
+                return Json(new
+                {
+                    bazName = customProduct.Name,
+                    bazCalories = customProduct.Calories,
+                    bazFats = customProduct.Fats,
+                    bazProtein = customProduct.Protein,
+                    bazCarbs = customProduct.Carbs
+                }, JsonRequestBehavior.AllowGet);
             }
+            else
+            {
+                DefaultProductContext dbDefaultProduct = new DefaultProductContext();
+                var defaultProduct = dbDefaultProduct.DefaultProducts.Find(Convert.ToInt32(selectId));
+                return Json(new
+                {
+                    bazName = defaultProduct.Name,
+                    bazCalories = defaultProduct.Calories,
+                    bazFats = defaultProduct.Fats,
+                    bazProtein = defaultProduct.Protein,
+                    bazCarbs = defaultProduct.Carbs
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

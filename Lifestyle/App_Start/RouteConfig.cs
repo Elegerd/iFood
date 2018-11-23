@@ -13,9 +13,9 @@ namespace Lifestyle
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
-                name: "DefaultDemo",
-              url: "demo",
-              defaults: new { controller = "Home", action = "Demo" }
+                name: "DefaultAddProduct",
+              url: "AddProduct",
+              defaults: new { controller = "Home", action = "AddProduct" }
           );
             routes.MapRoute(
                 name: "Default",

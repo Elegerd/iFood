@@ -91,7 +91,7 @@
                                     <td width="50">@((double)item.Fats * g.Gram / 100)</td>
                                     <td width="50">@((double)item.Protein * g.Gram / 100)</td>
                                     <td width="50">@((double)item.Carbs * g.Gram / 100)</td>
-                                    <td> <a href="#"  onclick="delproduct('DelProduct/@g.Id', 'POST');"> Удалить </a> </td>
+                                    <td class="deleteRow" onclick="DeleteProduct(@g.Id)"> <a href="#"> Удалить </a> </td>
                                 </tr>
                                 break;
                             }
@@ -110,7 +110,7 @@
                                     <td width="50">@((double)item.Fats * g.Gram / 100)</td>
                                     <td width="50">@((double)item.Protein * g.Gram / 100)</td>
                                     <td width="50">@((double)item.Carbs * g.Gram / 100)</td>
-                                    <td> <a href="#" id="her1" onclick="delproduct('DelProduct/@g.Id');"> Удалить </a> </td>
+                                    <td class="deleteRow" onclick="DeleteProduct(@g.Id)"> <a href="#"> Удалить </a> </td>
                                 </tr>
                                 break;
                             }
@@ -173,12 +173,15 @@
                                 document.querySelectorAll("#CustomProducts_Id")[0].style.display = "initial";
                             }
 
-                            function delproduct(path) {
-                                var form = document.createElement("form");
-                                form.method = "post";
-                                form.action = path;
-                                document.body.appendChild(form);
-                                form.submit();
+                            function DeleteProduct(id) {
+                                $.ajax({
+                                    url: "/DeleteProduct?id=" + id,
+                                })
+                                productTable.addEventListener('click', function (evt) {
+                                    if (evt.target.closest('.deleteRow')) {
+                                        evt.target.closest('tr').remove()
+                                    }
+                                })
                             }
 
                             function AddProduct() {
@@ -199,7 +202,7 @@
                                                 '</td><td>' + response["bazCalories"] +
                                                 '</td><td>' + response["bazFats"] + '</td><td>'
                                                 + response["bazProtein"] + '</td><td>' + response["bazCarbs"]
-                                                + "</td><td> <a href='#' id='her1' onclick='delproduct('DelProduct/testId')'> Удалить </a></td></tr>");
+                                                + "</td><td class='deleteRow' onclick='DeleteProduct(" + response['bazId'] + ")'> <a href='#'> Удалить </a></td></tr>");
                                         }
                                     })
                             }

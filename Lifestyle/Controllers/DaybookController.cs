@@ -153,6 +153,7 @@ namespace Lifestyle.Controllers
         public ActionResult AddProduct()
         {
             int userId;
+            int id;
             using (UserContext db = new UserContext())
             {
                 userId = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name).UserId;
@@ -169,11 +170,14 @@ namespace Lifestyle.Controllers
                 }
                 using (DaybookContext dbDaybook = new DaybookContext())
                 {
-                    dbDaybook.Daybooks.Add(new DaybookProduct { UserId = userId, ProductId = customProduct.Id, Custom = Convert.ToBoolean(product), Gram = Convert.ToInt32(gram) });
+                    DaybookProduct daybookProduct = new DaybookProduct { UserId = userId, ProductId = customProduct.Id, Custom = Convert.ToBoolean(product), Gram = Convert.ToInt32(gram) };
+                    dbDaybook.Daybooks.Add(daybookProduct);
                     dbDaybook.SaveChanges();
+                    id = daybookProduct.Id;
                 }
                 return Json(new
                 {
+                    bazId = id,
                     bazName = customProduct.Name,
                     bazCalories = customProduct.Calories,
                     bazFats = customProduct.Fats,
@@ -190,11 +194,14 @@ namespace Lifestyle.Controllers
                 }
                 using (DaybookContext dbDaybook = new DaybookContext())
                 {
-                    dbDaybook.Daybooks.Add(new DaybookProduct { UserId = userId, ProductId = defaultProduct.Id, Custom = Convert.ToBoolean(product), Gram = Convert.ToInt32(gram) });
+                    DaybookProduct daybookProduct = new DaybookProduct { UserId = userId, ProductId = defaultProduct.Id, Custom = Convert.ToBoolean(product), Gram = Convert.ToInt32(gram) };
+                    dbDaybook.Daybooks.Add(daybookProduct);
                     dbDaybook.SaveChanges();
+                    id = daybookProduct.Id;
                 }
                 return Json(new
                 {
+                    bazId = id,
                     bazName = defaultProduct.Name,
                     bazCalories = defaultProduct.Calories,
                     bazFats = defaultProduct.Fats,
@@ -204,38 +211,15 @@ namespace Lifestyle.Controllers
             }
         }
 
-        public ActionResult DeleteProduct(int? id)
+        public ActionResult DeleteProduct()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            DaybookProduct b = dbDaybook.Daybooks.Find(id);
-            if (b == null)
-            {
-                return HttpNotFound();
-            }
-            dbDaybook.Daybooks.Remove(b);
+            string id = Request.QueryString["id"];
+            DaybookProduct daybookProduct = dbDaybook.Daybooks.Find(Convert.ToInt32(id));
+            dbDaybook.Daybooks.Remove(daybookProduct);
             dbDaybook.SaveChanges();
-            return Redirect("~/Daybook/Index");
-        }
-
-        [HttpPost]
-        [Authorize]
-        public ActionResult DelProduct(int? id)
-        {
-            if (id == null)
+            return Json(new
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            DaybookProduct b = dbDaybook.Daybooks.Find(id);
-            if (b == null)
-            {
-                return HttpNotFound();
-            }
-            dbDaybook.Daybooks.Remove(b);
-            dbDaybook.SaveChanges();
-            return Redirect("~/Daybook/Index");
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

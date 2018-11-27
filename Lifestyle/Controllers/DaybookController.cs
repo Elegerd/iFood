@@ -21,7 +21,6 @@ namespace Lifestyle.Controllers
         public ActionResult Index()
         {
             User user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
-
             int c = 0;
             int f = 0;
             int p = 0;
@@ -88,6 +87,7 @@ namespace Lifestyle.Controllers
             User user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
             ViewBag.Product = new SelectList(dbDefaultProduct.DefaultProducts, "Id", "Name");
             ViewBag.Product_2 = new SelectList(dbCustomProduct.CustomProducts, "Id", "Name");
+
             if (custom == false)
             {
                 dbDaybook.Daybooks.Add(new DaybookProduct { UserId = user.UserId, ProductId = productModel.DefaultProducts.Id, Custom = custom, Gram = gram });
@@ -105,6 +105,7 @@ namespace Lifestyle.Controllers
             var daybook = dbDaybook.Daybooks.Where(x => x.UserId == user.UserId);
             List<DefaultProduct> d_products = new List<DefaultProduct> { };
             List<CustomProduct> c_products = new List<CustomProduct> { };
+
             foreach (var item in daybook)
             {
                 if (item.Custom == false)
@@ -146,6 +147,77 @@ namespace Lifestyle.Controllers
         public ActionResult Help()
         {
             return View();
+        }
+
+        [Authorize]
+        public ActionResult AddProduct()
+        {
+            int userId;
+            using (UserContext db = new UserContext())
+            {
+                userId = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name).UserId;
+            }
+            string selectId = Request.QueryString["id"];
+            string product = Request.QueryString["product"];
+            string gram = Request.QueryString["g"];
+            if (Convert.ToBoolean(product))
+            {
+                CustomProduct customProduct;
+                using (CustomProductContext dbCustomProduct = new CustomProductContext())
+                {
+                    customProduct = dbCustomProduct.CustomProducts.Find(Convert.ToInt32(selectId));
+                }
+                using (DaybookContext dbDaybook = new DaybookContext())
+                {
+                    dbDaybook.Daybooks.Add(new DaybookProduct { UserId = userId, ProductId = customProduct.Id, Custom = Convert.ToBoolean(product), Gram = Convert.ToInt32(gram) });
+                    dbDaybook.SaveChanges();
+                }
+                return Json(new
+                {
+                    bazName = customProduct.Name,
+                    bazCalories = customProduct.Calories,
+                    bazFats = customProduct.Fats,
+                    bazProtein = customProduct.Protein,
+                    bazCarbs = customProduct.Carbs
+                }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                DefaultProduct defaultProduct;
+                using (DefaultProductContext dbDefaultProduct = new DefaultProductContext())
+                {
+                    defaultProduct = dbDefaultProduct.DefaultProducts.Find(Convert.ToInt32(selectId));
+                }
+                using (DaybookContext dbDaybook = new DaybookContext())
+                {
+                    dbDaybook.Daybooks.Add(new DaybookProduct { UserId = userId, ProductId = defaultProduct.Id, Custom = Convert.ToBoolean(product), Gram = Convert.ToInt32(gram) });
+                    dbDaybook.SaveChanges();
+                }
+                return Json(new
+                {
+                    bazName = defaultProduct.Name,
+                    bazCalories = defaultProduct.Calories,
+                    bazFats = defaultProduct.Fats,
+                    bazProtein = defaultProduct.Protein,
+                    bazCarbs = defaultProduct.Carbs
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult DeleteProduct(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DaybookProduct b = dbDaybook.Daybooks.Find(id);
+            if (b == null)
+            {
+                return HttpNotFound();
+            }
+            dbDaybook.Daybooks.Remove(b);
+            dbDaybook.SaveChanges();
+            return Redirect("~/Daybook/Index");
         }
 
         [HttpPost]

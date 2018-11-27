@@ -192,7 +192,7 @@
                                 }
                                 var gram = document.getElementById("getgram").value;
                                     $.ajax({
-                                        url: "/AddProduct?product=" + product + "&id=" + selectValue,
+                                        url: "/AddProduct?product=" + product + "&id=" + selectValue + "&g=" + gram,
                                         success: function (response) {
                                             $('#productTable').append('<tr><td>' +
                                                 response["bazName"] + '</td><td>' + gram +

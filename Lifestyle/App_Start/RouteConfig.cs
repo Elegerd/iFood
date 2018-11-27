@@ -15,7 +15,7 @@ namespace Lifestyle
             routes.MapRoute(
                 name: "DefaultAddProduct",
               url: "AddProduct",
-              defaults: new { controller = "Home", action = "AddProduct" }
+              defaults: new { controller = "Daybook", action = "AddProduct" }
           );
             routes.MapRoute(
                 name: "Default",

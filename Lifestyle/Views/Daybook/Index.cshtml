@@ -146,10 +146,6 @@
                                 }
                             </select>
 
-                            @*@Html.ListBoxFor(m => m.DefaultProducts.Id, ViewBag.Product as SelectList, new { htmlAttributes = new { @class = "multiple" } })*@
-
-                            @*@Html.ListBoxFor(m => m.CustomProducts.Id, ViewBag.Product_2 as SelectList, new { htmlAttributes = new { @class = "multiple hiddencl" } })*@
-
                             <input type="hidden" name="custom" value="false" /><br />
                             <input type="number" name="gram" min="1" value="1" id="getgram" /><br />
                             <select data-val="true" id="CustomProducts_Id" multiple="multiple">
@@ -200,6 +196,28 @@
                                                 '</td><td>' + response["bazFats"] + '</td><td>'
                                                 + response["bazProtein"] + '</td><td>' + response["bazCarbs"]
                                                 + "</td><td> <a href='#' id='her1' onclick='delproduct('DelProduct/testId')'> Удалить </a></td></tr>");
+
+                                            $('#donutchart').ready(function () {
+                                                var data = google.visualization.arrayToDataTable([
+                                                ['Task', 'БЖУ соотношение'],
+                                                ['Белки', @ViewBag.p + response["bazProtein"]],
+                                                ['Жиры', @ViewBag.f + response["bazProtein"]],
+                                                ['Углеводы', @ViewBag.car + response["bazProtein"] ],
+
+                                            ]);
+
+                                            var options = {
+                                                title: 'БЖУ соотношение',
+                                                is3D: true,
+                                            };
+
+                                            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                                            chart.draw(data, options);
+
+                                            }
+                                             
+
+
                                         }
                                     })
                             }
@@ -207,7 +225,7 @@
 
                         <div class="modal-footer" style="color:black">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-                            <button type="button" name="ProductsAddButton" class="btn btn-success" onclick="AddProduct()">Добавить</button>
+                            <button type="button" name="ProductsAddButton" class="btn btn-success"   onclick="AddProduct()" data-dismiss="modal">Добавить</button>
                         </div>
                     </div>
                 </div>

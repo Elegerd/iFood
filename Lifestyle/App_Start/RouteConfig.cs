@@ -12,11 +12,19 @@ namespace Lifestyle
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
             routes.MapRoute(
-                name: "DefaultAddProduct",
-              url: "AddProduct",
-              defaults: new { controller = "Daybook", action = "AddProduct" }
-          );
+                name: "DeleteProduct",
+                url: "DeleteProduct",
+                defaults: new { controller = "Daybook", action = "DeleteProduct" }
+            );
+
+            routes.MapRoute(
+                name: "AddProduct",
+                url: "AddProduct",
+                defaults: new { controller = "Daybook", action = "AddProduct" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

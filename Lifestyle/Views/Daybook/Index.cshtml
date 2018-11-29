@@ -13,10 +13,12 @@
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
+            var required = @ViewBag.Calories;
+            var current = @ViewBag.c;
             var data = google.visualization.arrayToDataTable([
                 ['Task', 'Калории'],
-                ['Требуемые калории', @ViewBag.Calories],
-                ['Текущие калории', @ViewBag.c],
+                ['Требуемые калории', required],
+                ['Текущие калории', current],
             ]);
 
             var options = {
@@ -65,7 +67,7 @@
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-            <p>Необходимые калории: @ViewBag.Calories</p>
+            <p id="requiredCal">Необходимые калории: @ViewBag.Calories</p>
 
             <table class="simple-table" id="productTable">
                 <tr>

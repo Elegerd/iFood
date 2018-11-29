@@ -10,6 +10,7 @@
     <link href="@Url.Content("~/Content/Style/DaybookIndex.css")" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
+        var chart1;
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
@@ -24,14 +25,14 @@
             var options = {
                 title: 'Калории',
                 pieHole: 0.4,
-
             };
 
-            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-            chart.draw(data, options);
+            chart1 = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart1.draw(data, options);
         }
     </script>
     <script type="text/javascript">
+        var chart2;
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
@@ -48,8 +49,8 @@
                 is3D: true,
             };
 
-            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-            chart.draw(data, options);
+            chart2 = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+            chart2.draw(data, options);
         }
     </script>
     <script src="/js/jquery.min.js"></script>
@@ -64,9 +65,6 @@
             Дневник – это та «информационная база», на основе которой вы можете составить индивидуальную диету. Не самостоятельно, конечно, а с помощью нашего сайта.
         </h4>
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
             <p id="requiredCal">Необходимые калории: @ViewBag.Calories</p>
 
             <table class="simple-table" id="productTable">
@@ -89,10 +87,10 @@
                                 <tr>
                                     <td width="200">@item.Name</td>
                                     <td width="50">@g.Gram</td>
-                                    <td width="50">@((double)item.Calories * g.Gram / 100)</td>
-                                    <td width="50">@((double)item.Fats * g.Gram / 100)</td>
-                                    <td width="50">@((double)item.Protein * g.Gram / 100)</td>
-                                    <td width="50">@((double)item.Carbs * g.Gram / 100)</td>
+                                    <td width="50">@(item.Calories * g.Gram / 100)</td>
+                                    <td width="50">@(item.Fats * g.Gram / 100)</td>
+                                    <td width="50">@(item.Protein * g.Gram / 100)</td>
+                                    <td width="50">@(item.Carbs * g.Gram / 100)</td>
                                     <td class="deleteRow" onclick="DeleteProduct(@g.Id)"> <a href="#"> Удалить </a> </td>
                                 </tr>
                                 break;
@@ -108,10 +106,10 @@
                                 <tr>
                                     <td width="200">@item.Name</td>
                                     <td width="50">@g.Gram</td>
-                                    <td width="50">@((double)item.Calories * g.Gram / 100)</td>
-                                    <td width="50">@((double)item.Fats * g.Gram / 100)</td>
-                                    <td width="50">@((double)item.Protein * g.Gram / 100)</td>
-                                    <td width="50">@((double)item.Carbs * g.Gram / 100)</td>
+                                    <td width="50">@(item.Calories * g.Gram / 100)</td>
+                                    <td width="50">@(item.Fats * g.Gram / 100)</td>
+                                    <td width="50">@(item.Protein * g.Gram / 100)</td>
+                                    <td width="50">@(item.Carbs * g.Gram / 100)</td>
                                     <td class="deleteRow" onclick="DeleteProduct(@g.Id)"> <a href="#"> Удалить </a> </td>
                                 </tr>
                                 break;
@@ -142,20 +140,16 @@
                         <div class="modal-body" style="color:black">
 
                             <select data-val="true" id="DefaultProducts_Id" multiple="multiple">
-                                @foreach (var defproduct in ViewBag.Product)
+                                @foreach (var defproduct in ViewBag.DefaultProducts)
                                 {
                                     <option value="@defproduct.Id">@defproduct.Name</option>
                                 }
                             </select>
 
-                            @*@Html.ListBoxFor(m => m.DefaultProducts.Id, ViewBag.Product as SelectList, new { htmlAttributes = new { @class = "multiple" } })*@
-
-                            @*@Html.ListBoxFor(m => m.CustomProducts.Id, ViewBag.Product_2 as SelectList, new { htmlAttributes = new { @class = "multiple hiddencl" } })*@
-
                             <input type="hidden" name="custom" value="false" /><br />
-                            <input type="number" name="gram" min="1" value="1" id="getgram" /><br />
+                            <input type="number" name="gram" min="1" value="100" id="getgram" /><br />
                             <select data-val="true" id="CustomProducts_Id" multiple="multiple">
-                                @foreach (var cusproduct in ViewBag.Product_2)
+                                @foreach (var cusproduct in ViewBag.CustomProducts)
                                 {
                                     <option value="@cusproduct.Id">@cusproduct.Name</option>
                                 }
@@ -178,6 +172,44 @@
                             function DeleteProduct(id) {
                                 $.ajax({
                                     url: "/DeleteProduct?id=" + id,
+                                    success: function (response) {
+
+                                        allCalories = response["allCalories"];
+                                        caloriesNeeded = response["caloriesNeeded"];
+                                        fats = response["fats"];
+                                        protein = response["protein"];
+                                        carbs = response["carbs"];
+                                        document.getElementById("requiredCal").innerHTML = "Необходимые калории:" + caloriesNeeded;
+
+
+                                        var data1 = google.visualization.arrayToDataTable([
+                                            ['Task', 'Калории'],
+                                            ['Требуемые калории', caloriesNeeded],
+                                            ['Текущие калории', allCalories],
+                                        ]);
+
+                                        var options1 = {
+                                            title: 'Калории',
+                                            pieHole: 0.4,
+                                        };
+
+                                        var data2 = google.visualization.arrayToDataTable([
+                                            ['Task', 'БЖУ соотношение'],
+                                            ['Белки', protein],
+                                            ['Жиры', fats],
+                                            ['Углеводы', carbs],
+                                        ]);
+
+                                        var options2 = {
+                                            title: 'БЖУ соотношение',
+                                            is3D: true,
+                                        };
+
+                                        chart1 = new google.visualization.PieChart(document.getElementById('donutchart'));
+                                        chart2 = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                                        chart1.draw(data1, options1);
+                                        chart2.draw(data2, options2);
+                                    }
                                 })
                                 productTable.addEventListener('click', function (evt) {
                                     if (evt.target.closest('.deleteRow')) {
@@ -195,16 +227,54 @@
                                     var selectValue = document.getElementById("DefaultProducts_Id").value;
                                     var product = document.querySelectorAll("input[name=custom]")[0].value;
                                 }
+
+                                var allCalories, caloriesNeeded, fats, protein, carbs;
                                 var gram = document.getElementById("getgram").value;
                                     $.ajax({
                                         url: "/AddProduct?product=" + product + "&id=" + selectValue + "&g=" + gram,
                                         success: function (response) {
+
+                                            allCalories = response["allCalories"];
+                                            caloriesNeeded = response["caloriesNeeded"];
+                                            fats = response["fats"];
+                                            protein = response["protein"];
+                                            carbs = response["carbs"];
+                                            document.getElementById("requiredCal").innerHTML = "Необходимые калории: " + caloriesNeeded;
+
+                                            var data1 = google.visualization.arrayToDataTable([
+                                                ['Task', 'Калории'],
+                                                ['Требуемые калории', caloriesNeeded],
+                                                ['Текущие калории', allCalories],
+                                            ]);
+
+                                            var options1 = {
+                                                title: 'Калории',
+                                                pieHole: 0.4,
+                                            };
+
+                                            var data2 = google.visualization.arrayToDataTable([
+                                                ['Task', 'БЖУ соотношение'],
+                                                ['Белки', protein],
+                                                ['Жиры', fats],
+                                                ['Углеводы', carbs],
+                                            ]);
+
+                                            var options2 = {
+                                                title: 'БЖУ соотношение',
+                                                is3D: true,
+                                            };
+
+                                            chart1 = new google.visualization.PieChart(document.getElementById('donutchart'));
+                                            chart2 = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                                            chart1.draw(data1, options1);
+                                            chart2.draw(data2, options2);
+
                                             $('#productTable').append('<tr><td>' +
-                                                response["bazName"] + '</td><td>' + gram +
-                                                '</td><td>' + response["bazCalories"] +
-                                                '</td><td>' + response["bazFats"] + '</td><td>'
-                                                + response["bazProtein"] + '</td><td>' + response["bazCarbs"]
-                                                + "</td><td class='deleteRow' onclick='DeleteProduct(" + response['bazId'] + ")'> <a href='#'> Удалить </a></td></tr>");
+                                                response["addName"] + '</td><td>' + gram +
+                                                '</td><td>' + response["addCalories"] +
+                                                '</td><td>' + response["addFats"] + '</td><td>'
+                                                + response["addProtein"] + '</td><td>' + response["addCarbs"]
+                                                + "</td><td class='deleteRow' onclick='DeleteProduct(" + response['addId'] + ")'> <a href='#'> Удалить </a></td></tr>");
                                         }
                                     })
                             }
@@ -217,7 +287,6 @@
                     </div>
                 </div>
             </div>
-        }
     </div>
 </div>
 

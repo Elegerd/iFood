@@ -27,6 +27,10 @@ namespace Lifestyle.Controllers
             {
                 user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
             }
+            if (user.Sex == null || user.Height == null || user.Weight == null)
+            {
+                return HttpNotFound();
+            }
             var daybook = dbDaybook.Daybooks.Where(x => x.UserId == user.UserId);
 
             foreach (var item in daybook)
@@ -46,7 +50,7 @@ namespace Lifestyle.Controllers
                     c += customProduct.Calories * (item.Gram / 100);
                     f += customProduct.Fats * (item.Gram / 100);
                     p += customProduct.Protein * (item.Gram / 100);
-                    car += customProduct.Carbs* (item.Gram / 100);
+                    car += customProduct.Carbs * (item.Gram / 100);
                     c_products.Add(customProduct);
                 }
             }
@@ -64,11 +68,6 @@ namespace Lifestyle.Controllers
 
             ViewBag.DefaultProducts = dbDefaultProduct.DefaultProducts.ToList().ToList();
             ViewBag.CustomProducts = dbCustomProduct.CustomProducts.Where(x => x.UserId == user.UserId).ToList();
-
-            if (user.Sex == null || user.Height == null || user.Weight == null)
-            {
-                return HttpNotFound();
-            }
             return View();
         }
 

@@ -53,8 +53,6 @@
             chart2.draw(data, options);
         }
     </script>
-    <script src="/js/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <div class="container center-block" style="background-color:rgb(0, 0, 0, 0.8); margin-top:30px ; border-radius:20px">
@@ -65,228 +63,227 @@
             Дневник – это та «информационная база», на основе которой вы можете составить индивидуальную диету. Не самостоятельно, конечно, а с помощью нашего сайта.
         </h4>
 
-            <p id="requiredCal">Необходимые калории: @ViewBag.Calories</p>
+        <p id="requiredCal">Необходимые калории: @ViewBag.Calories</p>
 
-            <table class="simple-table" id="productTable">
-                <tr>
-                    <td>Название</td>
-                    <td>Граммы</td>
-                    <td>Калории</td>
-                    <td>Жиры</td>
-                    <td>Белки</td>
-                    <td>Углеводы</td>
-                </tr>
-                @foreach (var g in ViewBag.Daybook)
+        <table class="simple-table" id="productTable">
+            <tr>
+                <td>Название</td>
+                <td>Граммы</td>
+                <td>Калории</td>
+                <td>Жиры</td>
+                <td>Белки</td>
+                <td>Углеводы</td>
+            </tr>
+            @foreach (var g in ViewBag.Daybook)
+            {
+                if (g.Custom == false)
                 {
-                    if (g.Custom == false)
+                    foreach (var item in ViewBag.dp)
                     {
-                        foreach (var item in ViewBag.dp)
+                        if (g.ProductId == item.Id)
                         {
-                            if (g.ProductId == item.Id)
-                            {
-                                <tr>
-                                    <td width="200">@item.Name</td>
-                                    <td width="50">@g.Gram</td>
-                                    <td width="50">@(item.Calories * g.Gram / 100)</td>
-                                    <td width="50">@(item.Fats * g.Gram / 100)</td>
-                                    <td width="50">@(item.Protein * g.Gram / 100)</td>
-                                    <td width="50">@(item.Carbs * g.Gram / 100)</td>
-                                    <td class="deleteRow" onclick="DeleteProduct(@g.Id)"> <a href="#"> Удалить </a> </td>
-                                </tr>
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        foreach (var item in ViewBag.cp)
-                        {
-                            if (g.ProductId == item.Id)
-                            {
-                                <tr>
-                                    <td width="200">@item.Name</td>
-                                    <td width="50">@g.Gram</td>
-                                    <td width="50">@(item.Calories * g.Gram / 100)</td>
-                                    <td width="50">@(item.Fats * g.Gram / 100)</td>
-                                    <td width="50">@(item.Protein * g.Gram / 100)</td>
-                                    <td width="50">@(item.Carbs * g.Gram / 100)</td>
-                                    <td class="deleteRow" onclick="DeleteProduct(@g.Id)"> <a href="#"> Удалить </a> </td>
-                                </tr>
-                                break;
-                            }
+                            <tr>
+                                <td width="200">@item.Name</td>
+                                <td width="50">@g.Gram</td>
+                                <td width="50">@(item.Calories * g.Gram / 100)</td>
+                                <td width="50">@(item.Fats * g.Gram / 100)</td>
+                                <td width="50">@(item.Protein * g.Gram / 100)</td>
+                                <td width="50">@(item.Carbs * g.Gram / 100)</td>
+                                <td class="deleteRow" onclick="DeleteProduct(@g.Id)"> <a href="#"> Удалить </a> </td>
+                            </tr>
+                            break;
                         }
                     }
                 }
-            </table>
+                else
+                {
+                    foreach (var item in ViewBag.cp)
+                    {
+                        if (g.ProductId == item.Id)
+                        {
+                            <tr>
+                                <td width="200">@item.Name</td>
+                                <td width="50">@g.Gram</td>
+                                <td width="50">@(item.Calories * g.Gram / 100)</td>
+                                <td width="50">@(item.Fats * g.Gram / 100)</td>
+                                <td width="50">@(item.Protein * g.Gram / 100)</td>
+                                <td width="50">@(item.Carbs * g.Gram / 100)</td>
+                                <td class="deleteRow" onclick="DeleteProduct(@g.Id)"> <a href="#"> Удалить </a> </td>
+                            </tr>
+                            break;
+                        }
+                    }
+                }
+            }
+        </table>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="ADDDEFAULT()">
+            ADD DEFAULT
+        </button>
 
-            <button type="button"  class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="ADDDEFAULT()">
-                ADD DEFAULT
-            </button>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="ADDCUSTOM()">
+            ADD CUSTOM
+        </button>
 
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="ADDCUSTOM()">
-                ADD CUSTOM
-            </button>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="color:red">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel" style="color:black">Добавление продукта</h4>
+                    </div>
+                    <div class="modal-body" style="color:black">
 
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true" style="color:red">&times;</span>
-                            </button>
-                            <h4 class="modal-title" id="myModalLabel" style="color:black">Добавление продукта</h4>
-                        </div>
-                        <div class="modal-body" style="color:black">
+                        <select data-val="true" id="DefaultProducts_Id" multiple="multiple">
+                            @foreach (var defproduct in ViewBag.DefaultProducts)
+                            {
+                                <option value="@defproduct.Id">@defproduct.Name</option>
+                            }
+                        </select>
 
-                            <select data-val="true" id="DefaultProducts_Id" multiple="multiple">
-                                @foreach (var defproduct in ViewBag.DefaultProducts)
-                                {
-                                    <option value="@defproduct.Id">@defproduct.Name</option>
+                        <input type="hidden" name="custom" value="false" /><br />
+                        <input type="number" name="gram" min="1" value="100" id="getgram" /><br />
+                        <select data-val="true" id="CustomProducts_Id" multiple="multiple">
+                            @foreach (var cusproduct in ViewBag.CustomProducts)
+                            {
+                                <option value="@cusproduct.Id">@cusproduct.Name</option>
+                            }
+                        </select>
+                    </div>
+
+                    <script>
+                        function ADDDEFAULT() {
+                            document.querySelectorAll("input[name=custom]")[0].value = false;
+                            document.querySelectorAll("#DefaultProducts_Id")[0].style.display = "initial";
+                            document.querySelectorAll("#CustomProducts_Id")[0].style.display = "none";
+                        }
+
+                        function ADDCUSTOM() {
+                            document.querySelectorAll("input[name=custom]")[0].value = true;
+                            document.querySelectorAll("#DefaultProducts_Id")[0].style.display = "none";
+                            document.querySelectorAll("#CustomProducts_Id")[0].style.display = "initial";
+                        }
+
+                        function DeleteProduct(id) {
+                            $.ajax({
+                                url: "/DeleteProduct?id=" + id,
+                                success: function (response) {
+
+                                    allCalories = response["allCalories"];
+                                    caloriesNeeded = response["caloriesNeeded"];
+                                    fats = response["fats"];
+                                    protein = response["protein"];
+                                    carbs = response["carbs"];
+                                    document.getElementById("requiredCal").innerHTML = "Необходимые калории:" + caloriesNeeded;
+
+
+                                    var data1 = google.visualization.arrayToDataTable([
+                                        ['Task', 'Калории'],
+                                        ['Требуемые калории', caloriesNeeded],
+                                        ['Текущие калории', allCalories],
+                                    ]);
+
+                                    var options1 = {
+                                        title: 'Калории',
+                                        pieHole: 0.4,
+                                    };
+
+                                    var data2 = google.visualization.arrayToDataTable([
+                                        ['Task', 'БЖУ соотношение'],
+                                        ['Белки', protein],
+                                        ['Жиры', fats],
+                                        ['Углеводы', carbs],
+                                    ]);
+
+                                    var options2 = {
+                                        title: 'БЖУ соотношение',
+                                        is3D: true,
+                                    };
+
+                                    chart1 = new google.visualization.PieChart(document.getElementById('donutchart'));
+                                    chart2 = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                                    chart1.draw(data1, options1);
+                                    chart2.draw(data2, options2);
                                 }
-                            </select>
-
-                            <input type="hidden" name="custom" value="false" /><br />
-                            <input type="number" name="gram" min="1" value="100" id="getgram" /><br />
-                            <select data-val="true" id="CustomProducts_Id" multiple="multiple">
-                                @foreach (var cusproduct in ViewBag.CustomProducts)
-                                {
-                                    <option value="@cusproduct.Id">@cusproduct.Name</option>
+                            })
+                            productTable.addEventListener('click', function (evt) {
+                                if (evt.target.closest('.deleteRow')) {
+                                    evt.target.closest('tr').remove()
                                 }
-                            </select>
-                        </div>
+                            })
+                        }
 
-                        <script>
-                            function ADDDEFAULT() {
-                                document.querySelectorAll("input[name=custom]")[0].value = false;
-                                document.querySelectorAll("#DefaultProducts_Id")[0].style.display = "initial";
-                                document.querySelectorAll("#CustomProducts_Id")[0].style.display = "none";
+                        function AddProduct() {
+                            if (document.querySelectorAll("input[name=custom]")[0].value == 'true') {
+                                var selectValue = document.getElementById("CustomProducts_Id").value;
+                                var product = document.querySelectorAll("input[name=custom]")[0].value;
+                            }
+                            else {
+                                var selectValue = document.getElementById("DefaultProducts_Id").value;
+                                var product = document.querySelectorAll("input[name=custom]")[0].value;
                             }
 
-                            function ADDCUSTOM() {
-                                document.querySelectorAll("input[name=custom]")[0].value = true;
-                                document.querySelectorAll("#DefaultProducts_Id")[0].style.display = "none";
-                                document.querySelectorAll("#CustomProducts_Id")[0].style.display = "initial";
-                            }
+                            var allCalories, caloriesNeeded, fats, protein, carbs;
+                            var gram = document.getElementById("getgram").value;
+                            $.ajax({
+                                url: "/AddProduct?product=" + product + "&id=" + selectValue + "&g=" + gram,
+                                success: function (response) {
 
-                            function DeleteProduct(id) {
-                                $.ajax({
-                                    url: "/DeleteProduct?id=" + id,
-                                    success: function (response) {
+                                    allCalories = response["allCalories"];
+                                    caloriesNeeded = response["caloriesNeeded"];
+                                    fats = response["fats"];
+                                    protein = response["protein"];
+                                    carbs = response["carbs"];
+                                    document.getElementById("requiredCal").innerHTML = "Необходимые калории: " + caloriesNeeded;
 
-                                        allCalories = response["allCalories"];
-                                        caloriesNeeded = response["caloriesNeeded"];
-                                        fats = response["fats"];
-                                        protein = response["protein"];
-                                        carbs = response["carbs"];
-                                        document.getElementById("requiredCal").innerHTML = "Необходимые калории:" + caloriesNeeded;
+                                    var data1 = google.visualization.arrayToDataTable([
+                                        ['Task', 'Калории'],
+                                        ['Требуемые калории', caloriesNeeded],
+                                        ['Текущие калории', allCalories],
+                                    ]);
 
+                                    var options1 = {
+                                        title: 'Калории',
+                                        pieHole: 0.4,
+                                    };
 
-                                        var data1 = google.visualization.arrayToDataTable([
-                                            ['Task', 'Калории'],
-                                            ['Требуемые калории', caloriesNeeded],
-                                            ['Текущие калории', allCalories],
-                                        ]);
+                                    var data2 = google.visualization.arrayToDataTable([
+                                        ['Task', 'БЖУ соотношение'],
+                                        ['Белки', protein],
+                                        ['Жиры', fats],
+                                        ['Углеводы', carbs],
+                                    ]);
 
-                                        var options1 = {
-                                            title: 'Калории',
-                                            pieHole: 0.4,
-                                        };
+                                    var options2 = {
+                                        title: 'БЖУ соотношение',
+                                        is3D: true,
+                                    };
 
-                                        var data2 = google.visualization.arrayToDataTable([
-                                            ['Task', 'БЖУ соотношение'],
-                                            ['Белки', protein],
-                                            ['Жиры', fats],
-                                            ['Углеводы', carbs],
-                                        ]);
+                                    chart1 = new google.visualization.PieChart(document.getElementById('donutchart'));
+                                    chart2 = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                                    chart1.draw(data1, options1);
+                                    chart2.draw(data2, options2);
 
-                                        var options2 = {
-                                            title: 'БЖУ соотношение',
-                                            is3D: true,
-                                        };
-
-                                        chart1 = new google.visualization.PieChart(document.getElementById('donutchart'));
-                                        chart2 = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-                                        chart1.draw(data1, options1);
-                                        chart2.draw(data2, options2);
-                                    }
-                                })
-                                productTable.addEventListener('click', function (evt) {
-                                    if (evt.target.closest('.deleteRow')) {
-                                        evt.target.closest('tr').remove()
-                                    }
-                                })
-                            }
-
-                            function AddProduct() {
-                                if (document.querySelectorAll("input[name=custom]")[0].value == 'true') {
-                                    var selectValue = document.getElementById("CustomProducts_Id").value;
-                                    var product = document.querySelectorAll("input[name=custom]")[0].value;
+                                    $('#productTable').append('<tr><td>' +
+                                        response["addName"] + '</td><td>' + gram +
+                                        '</td><td>' + response["addCalories"] +
+                                        '</td><td>' + response["addFats"] + '</td><td>'
+                                        + response["addProtein"] + '</td><td>' + response["addCarbs"]
+                                        + "</td><td class='deleteRow' onclick='DeleteProduct(" + response['addId'] + ")'> <a href='#'> Удалить </a></td></tr>");
                                 }
-                                else {
-                                    var selectValue = document.getElementById("DefaultProducts_Id").value;
-                                    var product = document.querySelectorAll("input[name=custom]")[0].value;
-                                }
+                            })
+                        }
+                    </script>
 
-                                var allCalories, caloriesNeeded, fats, protein, carbs;
-                                var gram = document.getElementById("getgram").value;
-                                    $.ajax({
-                                        url: "/AddProduct?product=" + product + "&id=" + selectValue + "&g=" + gram,
-                                        success: function (response) {
-
-                                            allCalories = response["allCalories"];
-                                            caloriesNeeded = response["caloriesNeeded"];
-                                            fats = response["fats"];
-                                            protein = response["protein"];
-                                            carbs = response["carbs"];
-                                            document.getElementById("requiredCal").innerHTML = "Необходимые калории: " + caloriesNeeded;
-
-                                            var data1 = google.visualization.arrayToDataTable([
-                                                ['Task', 'Калории'],
-                                                ['Требуемые калории', caloriesNeeded],
-                                                ['Текущие калории', allCalories],
-                                            ]);
-
-                                            var options1 = {
-                                                title: 'Калории',
-                                                pieHole: 0.4,
-                                            };
-
-                                            var data2 = google.visualization.arrayToDataTable([
-                                                ['Task', 'БЖУ соотношение'],
-                                                ['Белки', protein],
-                                                ['Жиры', fats],
-                                                ['Углеводы', carbs],
-                                            ]);
-
-                                            var options2 = {
-                                                title: 'БЖУ соотношение',
-                                                is3D: true,
-                                            };
-
-                                            chart1 = new google.visualization.PieChart(document.getElementById('donutchart'));
-                                            chart2 = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-                                            chart1.draw(data1, options1);
-                                            chart2.draw(data2, options2);
-
-                                            $('#productTable').append('<tr><td>' +
-                                                response["addName"] + '</td><td>' + gram +
-                                                '</td><td>' + response["addCalories"] +
-                                                '</td><td>' + response["addFats"] + '</td><td>'
-                                                + response["addProtein"] + '</td><td>' + response["addCarbs"]
-                                                + "</td><td class='deleteRow' onclick='DeleteProduct(" + response['addId'] + ")'> <a href='#'> Удалить </a></td></tr>");
-                                        }
-                                    })
-                            }
-                        </script>
-
-                        <div class="modal-footer" style="color:black">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-                            <button type="button" name="ProductsAddButton" class="btn btn-success" onclick="AddProduct()">Добавить</button>
-                        </div>
+                    <div class="modal-footer" style="color:black">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                        <button type="button" id="productsAddButton" name="ProductsAddButton" class="btn btn-success" onclick="AddProduct()">Добавить</button>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 </div>
 
@@ -298,5 +295,3 @@
         <div id="piechart_3d"></div>
     </div>
 </div>
-
-

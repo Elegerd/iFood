@@ -9,6 +9,7 @@ namespace Lifestyle.Models
 {
     public class User
     {
+        public static object Identity { get; internal set; }
         [DisplayName("UserId")]
         public int UserId { get; set; }
 

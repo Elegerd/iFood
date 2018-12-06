@@ -4,10 +4,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <script language="JavaScript" type="text/javascript" src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.4.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="~/Scripts/noty-3.2.0-beta/noty.js"></script>
+    <link href="~/Scripts/noty-3.2.0-beta/noty.css" rel="stylesheet">
+    <link href="~/Scripts/noty-3.2.0-beta/themes/relax.css" rel="stylesheet">
+    <script language="JavaScript" type="text/javascript" src="~/SignalR/SignalR.js"></script>
 
     <style>
         #p_prldr {
@@ -98,9 +105,11 @@
         .dropdown:hover .dropbtn {
             background-color: transparent;
         }
+
         li {
             list-style-type: none; /* Убираем маркеры */
         }
+
         ul {
             margin-left: 0; /* Отступ слева в браузере IE и Opera */
             padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
@@ -127,12 +136,12 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
-                    
+
                     <li class="dropdown">
                         <a href="#" class="dropbtn" data-toggle="dropdown"><span class="glyphicon glyphicon-home"></span> Home<b class="caret"></b></a>
                         <ul class="dropdown-content">
                             <li><a href="~/Daybook/Index">  <span class="glyphicon glyphicon-remove" style="color:red"></span>   Diary</a></li>
-                  
+
                             <li><a href="~/Account/CustomProduct"> <span class="glyphicon glyphicon-remove" style="color:red"></span>   Create Product</a></li>
                         </ul>
                     </li>
@@ -156,12 +165,6 @@
             </div>
         </div>
     </div>
-
-
     @RenderBody()
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-
 </body>
 </html>
